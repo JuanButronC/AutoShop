@@ -191,6 +191,9 @@
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\productoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EnvioController.cs" />
+    <Compile Include="Controllers\TarjetaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -449,6 +452,27 @@
     <Content Include="Views\Direccion\Edit.cshtml" />
     <Content Include="Views\Direccion\Index.cshtml" />
     <Content Include="Views\Direccion\MisDirecciones.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\MisDatos.cshtml" />
+    <Content Include="Views\Envio\Create.cshtml" />
+    <Content Include="Views\Envio\Delete.cshtml" />
+    <Content Include="Views\Envio\Details.cshtml" />
+    <Content Include="Views\Envio\Edit.cshtml" />
+    <Content Include="Views\Envio\Index.cshtml" />
+    <Content Include="Views\Envio\Edit1.cshtml" />
+    <Content Include="Views\Envio\Home.cshtml" />
+    <Content Include="Views\Envio\Index1.cshtml" />
+    <Content Include="Views\Tarjeta\Create.cshtml" />
+    <Content Include="Views\Tarjeta\Delete.cshtml" />
+    <Content Include="Views\Tarjeta\Details.cshtml" />
+    <Content Include="Views\Tarjeta\Edit.cshtml" />
+    <Content Include="Views\Tarjeta\Index.cshtml" />
+    <Content Include="Views\Tarjeta\Invalida.cshtml" />
+    <Content Include="Views\Tarjeta\MisTarjetas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

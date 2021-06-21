@@ -4,8 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - AutoShop</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/font-awesome.min.css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css/estilos.css")
 
@@ -14,32 +15,136 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #e33b5c;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="~/Content/img/recursos/logoWhite.png" style="height:40px;width:120px" />
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Productos", "Index", "Catalogo", null, new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })
+                    </li>
+
+                    <li>
+                        @using (Html.BeginForm("BuscarProducto", "Catalogo", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            <span>&nbsp;</span>
+                            <input class="form-control mr-sm-2" type="text" id="nombreProducto" name="nombreProducto" placeholder="Ingrese un producto" />
+                            <button class="btn" type="submit" value="submit" style="background-color: #e33b5c; color: white; border-color: white;"><i class="fa fa-search"></i></button>
+                        }
+                    </li>
+                </ul>
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>
+    </header>
+
+    <!--<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/img/recursos/logoWhite.png" style="height:40px;width:120px" />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Productos", "Index", "Catalogo")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li style="padding:10px; margin-left:180px">
+                        @using (Html.BeginForm("BuscarProducto", "Catalogo", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            <input class="form-control mr-sm-2" type="text" id="nombreProducto" name="nombreProducto" placeholder="Ingrese un producto" />
+                            <button class="btn btn-success" type="submit" value="submit">Buscar</button>
+                        }
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </div>-->
+
     <div class="container body-content">
+        <br />
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
+        <br />
     </div>
+
+    <footer class="text-white" style="background-color: #e33b5c; padding: 15px; ">
+        <div class="row">
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;">
+                        Información
+                    </h3>
+                    <hr>
+                    <ul style="list-style: none; font-size: 18px;">
+                        <li>Acerca de AutoShop</li>
+                        <li>Contáctanos</li>
+                        <li>Métodos de pago</li>
+                        <li>Preguntas frecuentes</li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;">
+                        Redes Sociales
+                    </h3>
+                    <hr>
+                    <ul style="list-style: none;">
+                        <li><i class="fa fa-facebook-official fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                        <li><i class="fa fa-instagram fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                        <li><i class="fa fa-twitter fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;"> Desarrolladores</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul>
+                                <li>Becerril Padilla Guadalupe</li>
+                                <li>Butrón Cañada Juan Jesús</li>
+                                <li>Díaz Rodríguez Andrés Heladio</li>
+                                <li>Reyes Montiel Fernando Braulio</li>
+                                <li>Rodriguez Duarte Brando Ivan</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="img/logo.png" alt="logo" width="120px" height="35px" style="margin-top: 30px;">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

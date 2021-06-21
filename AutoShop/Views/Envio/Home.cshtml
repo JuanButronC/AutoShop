@@ -1,0 +1,175 @@
+﻿@using AutoShop.Models
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+
+    DateTime dia = DateTime.Now;
+    var hora = dia.Hour;
+    string mensaje = "";
+    if (hora < 12)
+    {
+        mensaje = "Buenos días";
+    }
+    if (hora >= 12)
+    {
+        mensaje = "Buenas tardes";
+    }
+    if (hora >= 19)
+    {
+        mensaje = "Buenas noches";
+    }
+    string name = @Session["usr"].ToString();
+}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+<br /><br />
+
+<div class="row" align="center">
+    <div class="col-md-12">
+        <div align="left"><h1>Home Envíos</h1></div><hr />
+        <div style="text-align: justify;">
+            <strong>@mensaje, @name, bienvenido.</strong><br />En este módulo, usted como empleado de Almacen, podrá manejar la información referente a envíos desde consultar aquellos pedidos sin enviar,
+            registrar pedidos enviados, consultar pedidos enviados hasta registrar pedidos entregados.
+        </div><br><br>
+    </div>
+    <div class="col-md-4">
+        <a href="@Url.Action("Index", "Envio", new { id = "add" })"
+           class="btn btn-primary" style="height:120px; width:100%; font-size:28px; padding:40px; text-align:center;">
+            Actualizar fecha de envío
+        </a>
+        <br />
+        <br />
+        <a href="@Url.Action("Index1", "Envio", new { id = "add" })"
+           class="btn btn-warning" style="height:120px; width:100%; font-size:28px; padding:40px; text-align:center;">
+            Actualizar fecha de entrega
+        </a>
+    </div>
+    <div class="col-md-8" style="padding-left:200px;">
+        <div class="row">
+            <div class="card" style="width: 18rem; padding-left: 0; margin-right: 20px; padding-right: 0;">
+                <img src="https://i1.wp.com/geeksroom.com/wp-content/uploads/2018/07/amazon-prime-boxes.jpg?resize=680%2C453&ssl=1" class="card-img-top" alt="..." height="200px">
+                <div class="card-body" style="padding-bottom: 0px">
+                    <p class="card-text" style="text-align: center;">
+                        <strong>Envíos del día de hoy</strong><br>
+                        <label style="text-align: center; font-size: 30px"> @ViewBag.enviosHoy</label>
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; padding-left: 0; margin-right: 20px; padding-right: 0;">
+                <img src="https://elpais.com/economia/imagenes/2016/08/05/actualidad/1470397693_744949_1470675978_noticia_fotograma.jpg" class="card-img-top" alt="..." height="200px">
+                <div class="card-body" style="padding-bottom: 0px">
+                    <p class="card-text" style="text-align: center;">
+                        <strong>Envíos de la semana</strong><br>
+                        <label style="text-align: center; font-size: 30px"> @ViewBag.enviosSemana</label>
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; padding-left: 0; margin-right: 20px; padding-right: 0;">
+                <img src="https://www.nextdaycargo.com/wp-content/uploads/2014/01/Screen-Shot-2014-01-27-at-9.37.42-AM.png" class="card-img-top" alt="..." height="200px">
+                <div class="card-body" style="padding-bottom: 0px">
+                    <p class="card-text" style="text-align: center;">
+                        <strong>Envíos del año</strong><br>
+                        <label style="text-align: center; font-size: 30px"> @ViewBag.enviosAnio</label>
+                    </p>
+                </div>
+            </div>
+        </div><br><br>
+    </div>
+</div>
+
+<div class="row">
+    <hr />
+    <div class="col-md-12">
+        <br>
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <br>
+                <div align="left"><h3>Todos los pedidos enviados</h3></div>
+            </div>
+            <div class="card-body">
+                @{
+                    List<Envio> listadoPedidos = (List<Envio>)ViewBag.listadoPedidos;
+                    if (listadoPedidos.Count() == 0)
+                    {
+                        <div class="jumbotron text-center" style="font-size:30px">No hay pedidos enviados, ¡Qué esperas, revisa los pedidos ahora!</div>
+                    }
+                    else
+                    {
+
+                        <table class="table table-dark table-striped table-hover table-bordered">
+                            <thead>
+                                <tr class="bg-danger text-white">
+                                    <th>ID Cliente</th>
+                                    <th>Nombre de cliente</th>
+                                    <th>Paquetería</th>
+                                    <th>Orden de cliente</th>
+                                    <th>Dirección</th>
+                                    <th>Fecha de envío</th>
+                                    <th>Fecha de entrega</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in listadoPedidos)
+                                {
+                                    if (item.fecha_envio != null)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.id_cliente_fk)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cliente.nombre)
+                                                @Html.DisplayFor(modelItem => item.Cliente.apPaterno)
+                                                @Html.DisplayFor(modelItem => item.Cliente.apMaterno)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Paqueteria.nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.id_orden_fk)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Direccion.calle)
+                                                @Html.DisplayFor(modelItem => item.Direccion.numExterior)
+                                                @Html.DisplayFor(modelItem => item.Direccion.colonia)
+                                                @Html.DisplayFor(modelItem => item.Direccion.municipio)
+                                                @Html.DisplayFor(modelItem => item.Direccion.estado)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    if (item.fecha_envio == null)
+                                                    {
+                                                        @Html.Display("No enviado")
+                                                    }
+                                                    else
+                                                    {
+
+                                                        @Html.DisplayFor(modelItem => item.fecha_envio)
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fecha_entrega)
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
