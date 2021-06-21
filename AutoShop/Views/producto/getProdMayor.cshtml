@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AutoShop.Models.Producto>
+
+@{
+
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-header bg-danger text-white text-center">
+            <h5 class="card-title"><b> Más Existencias </b></h5>
+        </div>
+        <div class="card-body text-center">
+            <img class="card-img-top" src="@Url.Action("getImg",new { id = item.id})" alt="@item.id" height="205" width="50" />
+            <hr>
+            <p class="card-text">
+                Nombre: @Html.DisplayFor(modelItem => item.nombre)
+                <br>
+                Categoría: @Html.DisplayFor(modelItem => item.Categoria.nombre)
+                <br />
+                Cantidad: @Html.DisplayFor(modelItem => item.cantidad)
+            </p>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AutoShop.Models.Producto>
+
+@{
+
+    Layout = null;
+}
+
+<table class="table table-striped table-bordered">
+    <tr class="bg-danger text-white">
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+        </tr>
+    }
+
+</table>

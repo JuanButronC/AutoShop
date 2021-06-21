@@ -376,6 +376,9 @@
     <Content Include="Views\producto\Details.cshtml" />
     <Content Include="Views\producto\Edit.cshtml" />
     <Content Include="Views\producto\Index.cshtml" />
+    <Content Include="Views\producto\getProductos.cshtml" />
+    <Content Include="Views\producto\getExistencias.cshtml" />
+    <Content Include="Views\producto\getProdMayor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
