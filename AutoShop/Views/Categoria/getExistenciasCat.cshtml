@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AutoShop.Models.Categoria>
+
+@{
+    Layout = null;
+}
+
+<div class="row" style="margin-top: 35px ; margin-left: 3%; align-content: center">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;">
+                <div class="card-header bg-danger text-white text-center">
+                    <h5 class="card-title"><b> @Html.DisplayFor(modelItem => item.nombre) </b></h5>
+                </div>
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="@Url.Action("getImg",new { id = item.id})" alt="@item.id" height="205" width="50" />
+                    <p class="card-text mt-2" style="font-size:18px">@Html.DisplayFor(modelItem => item.descripcion)</p>
+                    <a href="@Url.Action("Edit", "Categoria", new { id = item.id })" class="btn btn-danger mr-1" style="width: 125px"><i class="fa fa-pencil-square"></i> Actualizar</a>
+                    <a href="@Url.Action("Delete", "Categoria", new { id = item.id })" class="btn btn-danger ml-1" style="width: 125px; "><i class="fa fa-trash"></i> Eliminar</a>
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
