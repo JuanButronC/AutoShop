@@ -175,7 +175,7 @@
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminstradorController.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -253,6 +253,11 @@
     <Content Include="Content\css\estilos.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\recursos\businessman-1492563_1920.jpg" />
+    <Content Include="Content\img\recursos\magnifying-glass-145942_640.png" />
+    <Content Include="Content\img\recursos\paper-3213924_1920.jpg" />
+    <Content Include="Content\img\recursos\paper-3309829_1920.jpg" />
+    <Content Include="Content\img\recursos\empleadoPlaceHolder.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -302,6 +307,7 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Generados\Administrador\accionesAdministrador.js" />
     <Content Include="Scripts\Generados\Catalogo\accionesCatalogo.js" />
     <Content Include="Scripts\Generados\Catalogo\accionesProducto.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -374,13 +380,13 @@
     <Content Include="Views\Catalogo\CatalogoPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
-    <Content Include="Views\Adminstrador\Index.cshtml" />
     <Content Include="Views\Empleado\Create.cshtml" />
     <Content Include="Views\Empleado\Delete.cshtml" />
     <Content Include="Views\Empleado\Details.cshtml" />
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Empleado\DetailsPartial.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

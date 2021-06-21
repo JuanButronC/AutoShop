@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-md-6 justify-content-center">
-                        <img class="card-img-top" src="~/Content/img/recursos/Master.png" height="400px" width="400px" alt="">
+                        <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = item.id})"  height="400px" width="400px" alt="">
                     </div>
                     <div class="col-md-6 text-white">
                         @if (item.descuento == 0)

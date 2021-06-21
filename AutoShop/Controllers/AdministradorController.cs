@@ -5,10 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using AutoShop.Models;
 using System.Data.Entity;
-
 namespace AutoShop.Controllers
 {
-    public class AdminstradorController : Controller
+    public class AdministradorController : Controller
     {
         private contextAutoShop db = new contextAutoShop();
 
@@ -21,7 +20,6 @@ namespace AutoShop.Controllers
             ViewBag.totalAlmacen = administradores.Where(e => e.rol_fk == 2).Count();
             ViewBag.listaCompras = administradores.Where(e => e.rol_fk == 1).ToList();
             ViewBag.listaAlmacen = administradores.Where(e => e.rol_fk == 2).ToList();
-
             return View();
         }
     }

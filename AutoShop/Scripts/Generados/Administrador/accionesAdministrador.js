@@ -36,6 +36,16 @@ $("#imagen").on("change", function () {
     }
 });
 
+$("#form-edit").submit(function (event) {
+
+    if ($('#imagen_fk').get(0).files.length !== 0) {
+        return;
+    }
+    event.preventDefault();
+    bootBoxAlert("Aviso", "Debe seleccionar una imagen.");
+
+});
+
 function bootBoxAlert(titulo, mensaje) {
     bootbox.dialog({
         title: titulo,

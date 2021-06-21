@@ -20,7 +20,7 @@ namespace AutoShop.Controllers
             var empleado = db.Empleado.Where(e => e.rol_fk != 3).Include(e => e.Roles);
             return View(empleado.ToList());
         }
-        // GET: Empleado/Details/5
+        // GET: Empleado/DetailsPartial/5
         public ActionResult DetailsPartial(int? id)
         {
             if (id == null)
@@ -77,8 +77,10 @@ namespace AutoShop.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
+
                 }
             }
+         
             ViewBag.rol_fk = new SelectList(db.Roles, "id", "nombre", empleado.rol_fk);
             return View(empleado);
         }

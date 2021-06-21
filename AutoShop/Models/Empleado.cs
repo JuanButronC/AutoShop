@@ -11,16 +11,32 @@ namespace AutoShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Empleado
     {
         public int id { get; set; }
+
+        [Required(ErrorMessage = "El nombre del empleado es requerido")]
+        [StringLength(50, ErrorMessage = "El nombre debe tener menos de 50 caracteres")]
+        [Display(Name = "Nombre del Empleado")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "La contraseÃ±a de la cuenta es requerido")]
+        [StringLength(6, ErrorMessage = "El nombre debe tener menos de 6 caracteres")]
+        [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }
+        [Required(ErrorMessage = "El nombre del empleado es requerido")]
+        [RegularExpression(@"^([a-zA-Z]+[a-zA-Z0-9\._-]*)@{1}([a-zA-Z0-9\.]{2,})\.([a-zA-Z]{2,3})$", ErrorMessage = "El Email no es valido")]
+        [Display(Name = "Correo del Empleado")]
         public string correo { get; set; }
+        [Required(ErrorMessage = "El rol del empleado es requerido")]
+        [Range(1, 2, ErrorMessage = "El rol solo puede ser Compras o Almacen")]
+        [Display(Name = "Administrador de")]
         public int rol_fk { get; set; }
+        [Required(ErrorMessage = "La imagen del empleado es requerida")]
+        [Display(Name = "Imagen del Empleado")]
         public int imagen_fk { get; set; }
-    
+
+
         public virtual ImagenesEmpleado ImagenesEmpleado { get; set; }
         public virtual Roles Roles { get; set; }
     }

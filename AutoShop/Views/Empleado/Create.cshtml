@@ -11,11 +11,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-3">
-                <img class="img-thumbnail" src="~/Content/img/recursos/Master.png" alt="img" id="img-preview" height="200px" width="200px" />
+                <img class="img-thumbnail" src="~/Content/img/recursos/empleadoPlaceHolder.jpg" alt="img" id="img-preview" height="200px" width="200px" />
 
             </div>
             <div class="col-md-9">
-                @using (Html.BeginForm("Create", "Empleado", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("Create", "Empleado", null, FormMethod.Post, new { id="form-edit", enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.imagen_fk, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.imagen_fk, new { @type = "file", @class = "form-control" })
+                                @Html.TextBoxFor(model => model.imagen_fk, new { @type = "file", @class = "form-control", @accept = "image/png, image/jpeg, image/jpg" })
                                 @Html.ValidationMessageFor(model => model.imagen_fk, "", new { @class = "text-danger" })
                             </div>
                         </div>

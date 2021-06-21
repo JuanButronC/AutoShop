@@ -63,7 +63,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.imagen_fk, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                <input class="form-control" data-val="true" data-val-required="La imagen del empleado es requerida" id="imagen" name="imagen" type="file" value="">
+                                <input class="form-control" data-val="true" data-val-required="La imagen del empleado es requerida" id="imagen" name="imagen" type="file" value="" accept = "image/png, image/jpeg,image/jpeg">
 
                                 @Html.ValidationMessageFor(model => model.imagen_fk, "", new { @class = "text-danger" })
                             </div>
