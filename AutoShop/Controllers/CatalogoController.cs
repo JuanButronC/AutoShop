@@ -15,10 +15,10 @@ namespace AutoShop.Controllers
         // GET: Catalogo
         public ActionResult Index()
         {
-            var producto = db.Producto.Include(p => p.Categoria).ToList();
+            var producto = db.Producto.Where(p => p.cantidad>0).Include(p => p.Categoria).ToList();
             var categorias = db.Categoria.ToList();
             var descuentos = from p in db.Producto
-                             where p.descuento > 0
+                             where p.descuento > 0 
                              select p.descuento;
             setPageViewBag(producto);
             ViewBag.categorias = categorias.ToList();
@@ -54,7 +54,7 @@ namespace AutoShop.Controllers
         public ActionResult todosProductos()
         {
 
-            var producto = db.Producto.ToList();
+            var producto = db.Producto.Where(p => p.cantidad > 0).ToList();
             setPageViewBag(producto);
 
             return View();
@@ -63,7 +63,7 @@ namespace AutoShop.Controllers
         {
 
             var producto = (from p in db.Producto
-                            where p.id_categoria == id
+                            where p.id_categoria == id && p.cantidad > 0
                             select p).ToList();
             setPageViewBag(producto);
 
@@ -76,7 +76,7 @@ namespace AutoShop.Controllers
             ViewBag.SearchKey = nombreProducto;
 
             var query = from st in db.Producto
-                        where st.nombre.Contains(nombreProducto)
+                        where st.nombre.Contains(nombreProducto) && st.cantidad > 0
                         select st;
             var listProd = query.ToList();
             var categorias = db.Categoria.ToList();
@@ -113,7 +113,7 @@ namespace AutoShop.Controllers
             Producto producto = db.Producto.Find(id);
             ViewBag.producto = producto;
             var productosSimilares = (from p in db.Producto
-                                      where p.id_categoria == producto.id_categoria && p.id != producto.id
+                                      where p.id_categoria == producto.id_categoria && p.id != producto.id && p.cantidad > 0
                                       select p).ToList();
             int count = productosSimilares.Count;
             if (count >= 3)

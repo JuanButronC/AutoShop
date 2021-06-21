@@ -171,6 +171,7 @@ $("#btn-todos-descuento").click(function () {
 
 $("#btn-limpiar-filtros").click(function () {
     clean();
+    showPage("1");
 });
 
 

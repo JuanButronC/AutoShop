@@ -20,11 +20,11 @@ namespace AutoShop.Models
         [StringLength(50, ErrorMessage = "El nombre debe tener menos de 50 caracteres")]
         [Display(Name = "Nombre del Empleado")]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "La contraseÃ±a de la cuenta es requerido")]
+        [Required(ErrorMessage = "La contraseñade la cuenta es requerido")]
         [StringLength(6, ErrorMessage = "El nombre debe tener menos de 6 caracteres")]
         [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }
-        [Required(ErrorMessage = "El nombre del empleado es requerido")]
+        [Required(ErrorMessage = "El correo del empleado es requerido")]
         [RegularExpression(@"^([a-zA-Z]+[a-zA-Z0-9\._-]*)@{1}([a-zA-Z0-9\.]{2,})\.([a-zA-Z]{2,3})$", ErrorMessage = "El Email no es valido")]
         [Display(Name = "Correo del Empleado")]
         public string correo { get; set; }
