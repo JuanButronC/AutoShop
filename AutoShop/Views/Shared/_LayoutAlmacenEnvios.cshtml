@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="padding-top:0px; padding-bottom:0px">
+    <div class="navbar navbar-expand-lg navbar-dark" style="background-color: #e33b5c;">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Almacen")">
+                        <img src="~/Content/img/recursos/logoWhite.png" height="40px" width="120px" />
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">
+                        Paqueterías
+                        <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Home", "Home", "Paqueteria", new { id = "add" }, new { @class = "dropdown-item" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Registrar", "Create", "Paqueteria", new { id = "add" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Actualizar", "Index", "Paqueteria", new { id = "edit" }, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">
+                        Envíos
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @Html.ActionLink("Home", "Home", "Envio", new { id = "add" }, new { @class = "dropdown-item" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Envios", "Index", "Envio", new { id = "add" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Entregas", "Index1", "Envio", new { id = "edit" }, new { @class = "dropdown-item" })
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial1")
+        </div>
+    </div>
+    <div class="container-fluid body-content" style="padding-left:50px; padding-right:50px">
+        @RenderBody()
+    </div>
+
+    <footer class="text-white" style="background-color: #e33b5c; padding: 15px; margin-bottom:0px">
+        <div class="row">
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;">
+                        Información
+                    </h3>
+                    <hr>
+                    <ul style="list-style: none; font-size: 18px;">
+                        <li>Acerca de AutoShop</li>
+                        <li>Contáctanos</li>
+                        <li>Métodos de pago</li>
+                        <li>Preguntas frecuentes</li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 24px;">
+                        Redes Sociales
+                    </h3>
+                    <hr>
+                    <ul style="list-style: none;">
+                        <li><i class="fa fa-facebook-square fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                        <li><i class="fa fa-instagram fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                        <li><i class="fa fa-twitter fa-2x" style="vertical-align: middle;"></i>&nbsp; &#64; AutoShop</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="padding: 15px;">
+                    <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;"> Desarrolladores</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul>
+                                <li>Becerril Padilla Guadalupe</li>
+                                <li>Butrón Cañada Juan Jesús</li>
+                                <li>Díaz Rodríguez Andrés Heladio</li>
+                                <li>Reyes Montiel Fernando Braulio</li>
+                                <li>Rodriguez Duarte Brandon Ivan</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="~/Content/img/recursos/logoWhite.png" alt="logo" width="120px" height="35px" style="margin-top: 30px;">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
