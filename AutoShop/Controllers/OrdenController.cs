@@ -17,7 +17,14 @@ namespace AutoShop.Controllers
         // GET: Orden
         public ActionResult Index()
         {
-            var orden = db.Orden.Include(o => o.Cliente).Include(o => o.Direccion).Include(o => o.Tarjeta);
+            var orden = db.Orden.Where(o => o.Envio.FirstOrDefault().fecha_envio == null).OrderByDescending(o => o.fecha_creacion).Include(o => o.Cliente).Include(o => o.Envio.FirstOrDefault().Paqueteria.nombre);
+            return View(orden.ToList());
+        }
+
+        // GET: Orden
+        public ActionResult Index1()
+        {
+            var orden = db.Orden.Where(o => o.Envio.FirstOrDefault().fecha_entrega == null && o.Envio.FirstOrDefault().fecha_envio != null).OrderByDescending(o => o.fecha_creacion).Include(o => o.Cliente).Include(o => o.Envio.FirstOrDefault().Paqueteria.nombre);
             return View(orden.ToList());
         }
 
@@ -39,8 +46,8 @@ namespace AutoShop.Controllers
         // GET: Orden/Create
         public ActionResult Create()
         {
-            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo");
             ViewBag.id_direccion_fk = new SelectList(db.Direccion, "id", "estado");
+            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo");
             ViewBag.id_tarjeta_fk = new SelectList(db.Tarjeta, "id", "nombre");
             return View();
         }
@@ -59,8 +66,8 @@ namespace AutoShop.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_direccion_fk = new SelectList(db.Direccion, "id", "estado", orden.id_direccion_fk);
+            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_tarjeta_fk = new SelectList(db.Tarjeta, "id", "nombre", orden.id_tarjeta_fk);
             return View(orden);
         }
@@ -77,8 +84,8 @@ namespace AutoShop.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_direccion_fk = new SelectList(db.Direccion, "id", "estado", orden.id_direccion_fk);
+            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_tarjeta_fk = new SelectList(db.Tarjeta, "id", "nombre", orden.id_tarjeta_fk);
             return View(orden);
         }
@@ -96,8 +103,8 @@ namespace AutoShop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_direccion_fk = new SelectList(db.Direccion, "id", "estado", orden.id_direccion_fk);
+            ViewBag.id_cliente_fk = new SelectList(db.Cliente, "id", "correo", orden.id_cliente_fk);
             ViewBag.id_tarjeta_fk = new SelectList(db.Tarjeta, "id", "nombre", orden.id_tarjeta_fk);
             return View(orden);
         }
