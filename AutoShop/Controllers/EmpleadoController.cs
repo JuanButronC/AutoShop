@@ -17,10 +17,23 @@ namespace AutoShop.Controllers
         // GET: Empleado
         public ActionResult Index()
         {
-            var empleado = db.Empleado.Include(e => e.ImagenesEmpleado).Include(e => e.Roles);
+            var empleado = db.Empleado.Where(e => e.rol_fk != 3).Include(e => e.Roles);
             return View(empleado.ToList());
         }
-
+        // GET: Empleado/Details/5
+        public ActionResult DetailsPartial(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Empleado empleado = db.Empleado.Find(id);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleado);
+        }
         // GET: Empleado/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,7 +52,6 @@ namespace AutoShop.Controllers
         // GET: Empleado/Create
         public ActionResult Create()
         {
-            ViewBag.imagen_fk = new SelectList(db.ImagenesEmpleado, "id", "id");
             ViewBag.rol_fk = new SelectList(db.Roles, "id", "nombre");
             return View();
         }
@@ -49,16 +61,24 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,contrasenia,correo,rol_fk,imagen_fk")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "id,nombre,contrasenia,correo,rol_fk")] Empleado empleado, HttpPostedFileBase imagen_fk)
         {
-            if (ModelState.IsValid)
+            if (imagen_fk != null && imagen_fk.ContentLength > 0)
             {
-                db.Empleado.Add(empleado);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var reader = new System.IO.BinaryReader(imagen_fk.InputStream))
+                {
+                    ImagenesEmpleado imEmp = new ImagenesEmpleado();
+                    imEmp.imagen = reader.ReadBytes(imagen_fk.ContentLength);
+                    db.ImagenesEmpleado.Add(imEmp);
+                    empleado.imagen_fk = imEmp.id;
+                    if (ModelState.IsValid)
+                    {
+                        db.Empleado.Add(empleado);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
             }
-
-            ViewBag.imagen_fk = new SelectList(db.ImagenesEmpleado, "id", "id", empleado.imagen_fk);
             ViewBag.rol_fk = new SelectList(db.Roles, "id", "nombre", empleado.rol_fk);
             return View(empleado);
         }
@@ -75,7 +95,6 @@ namespace AutoShop.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.imagen_fk = new SelectList(db.ImagenesEmpleado, "id", "id", empleado.imagen_fk);
             ViewBag.rol_fk = new SelectList(db.Roles, "id", "nombre", empleado.rol_fk);
             return View(empleado);
         }
@@ -85,15 +104,34 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,contrasenia,correo,rol_fk,imagen_fk")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "id,nombre,contrasenia,correo,rol_fk,imagen_fk")] Empleado empleado, HttpPostedFileBase imagen)
         {
-            if (ModelState.IsValid)
+            if (imagen != null && imagen.ContentLength > 0)
             {
-                db.Entry(empleado).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var reader = new System.IO.BinaryReader(imagen.InputStream))
+                {
+                    ImagenesEmpleado imEmp = db.ImagenesEmpleado.Find(empleado.imagen_fk);
+                    imEmp.imagen = reader.ReadBytes(imagen.ContentLength);
+                    db.Entry(imEmp).State = EntityState.Modified;
+                    db.SaveChanges();
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(empleado).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
             }
-            ViewBag.imagen_fk = new SelectList(db.ImagenesEmpleado, "id", "id", empleado.imagen_fk);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(empleado).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+
             ViewBag.rol_fk = new SelectList(db.Roles, "id", "nombre", empleado.rol_fk);
             return View(empleado);
         }
@@ -119,7 +157,9 @@ namespace AutoShop.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Empleado empleado = db.Empleado.Find(id);
+            ImagenesEmpleado imgEmpleado = db.ImagenesEmpleado.Find(empleado.imagen_fk);
             db.Empleado.Remove(empleado);
+            db.ImagenesEmpleado.Remove(imgEmpleado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -131,6 +171,16 @@ namespace AutoShop.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Imagen(int id)
+        {
+            ImagenesEmpleado img = (from i in db.ImagenesEmpleado
+                                    where i.id == id
+                                    select i).ToList().FirstOrDefault();
+
+            var fileToRetrieve = img.imagen;
+            return File(fileToRetrieve, "image/jpeg");
         }
     }
 }

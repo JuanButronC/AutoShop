@@ -5,55 +5,55 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles del Empleado</h2>
 
-<div>
-    <h4>Empleado</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+<div class="card text-left card-secondary">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-thumbnail" src="@Url.Action("Imagen",new { id = Model.imagen_fk})" alt="@Model.nombre" height="200px" width="200px" />
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+            </div>
+            <div class="col-md-9">
+                <h4>@Html.DisplayFor(model => model.nombre)</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.contrasenia)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contrasenia)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.contrasenia)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.contrasenia)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.correo)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.correo)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.correo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.correo)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.rol_fk)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagenesEmpleado.id)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Roles.nombre)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImagenesEmpleado.id)
-        </dd>
+                </dl>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Roles.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Roles.nombre)
-        </dd>
+        </div>
 
-    </dl>
+    </div>
+    <div class="card-footer align-content-end">
+        @Html.ActionLink("Ir al listado", "Index", null, new { @class = "btn btn-c" })
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-c" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = Model.id }, new { @class = "btn btn-c" })
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+

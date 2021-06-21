@@ -5,54 +5,66 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Empleados</h2>
+<br />
+<div class="row">
+    <div class="col-md-8">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contrasenia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagenesEmpleado.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Roles.nombre)
-        </th>
-        <th></th>
-    </tr>
+        <div class="card text-left card-secondary">
+            <div class="card-body">
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th>
+                                @Html.DisplayNameFor(model => model.nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.contrasenia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.correo)
+                            </th>
+                            <th>
+                                Administrador de
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.contrasenia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.correo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Roles.nombre)
+                                </td>
+                                <td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contrasenia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImagenesEmpleado.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Roles.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+                                    <button class="btn btn-c btn-ver" id-empleado="@item.id"><span class="fa fa-eye"></span></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
-</table>
+                </table>
+            </div>
+            <div class="card-footer align-content-end">
+                @Html.ActionLink("Crear Nuevo Empleado", "Create", null, new { @class = "btn btn-c" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" id="div-info"></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/Scripts/Generados/Administrador/accionesAdministrador.js"></script>
+
