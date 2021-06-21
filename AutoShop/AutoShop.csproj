@@ -366,11 +366,12 @@
     <Content Include="Views\Paqueteria\Edit.cshtml" />
     <Content Include="Views\Paqueteria\Index.cshtml" />
     <Content Include="Views\Paqueteria\Home.cshtml" />
+    <Content Include="Views\Pago\CrearOrden.cshtml" />
+    <Content Include="Views\Pago\pagandoPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Almacen\" />
-    <Folder Include="Views\Pago\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

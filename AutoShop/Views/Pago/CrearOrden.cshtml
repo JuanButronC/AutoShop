@@ -1,0 +1,189 @@
+﻿@model IEnumerable<AutoShop.Models.Tarjeta>
+@using AutoShop.Models
+@{
+    ViewBag.Title = "CrearOrden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;">
+    <h2>CrearOrden</h2>
+    <hr />
+    <h3>Tarjetas</h3>
+    <table class="table table-bordered table-responsive table-striped" style="border-color: #dc3545">
+        <thead class="bg-danger text-white">
+            <tr class="info">
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Número de Cuenta
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if ((int)ViewBag.countT == 0)
+            {
+                <tr>
+                    <td colspan="3">@Html.ActionLink("Agregar Tarjeta", "Create", "Tarjeta")</td>
+                </tr>
+            }
+            else
+            {
+
+                foreach (Tarjeta tarj in ViewBag.tarjetas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => tarj.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => tarj.numero_cuenta)
+                        </td>
+                        <td>
+                            @switch (tarj.tipoTarj)
+                            {
+                                case 1:
+
+                                    <img src="~/Content/img/recursos/visa.png" alt="Visa" width="150px" height="150px" />
+
+
+                                    break;
+                                case 2:
+
+                                    <img src="~/Content/img/recursos/master.png" alt="Master" width="150px" height="150px" />
+
+                                    break;
+                                case 3:
+
+                                    <img src="~/Content/img/recursos/american.png" alt="American" width="150px" height="150px" />
+
+                                    break;
+                            }
+                        </td>
+                        <td>
+                            <input type="checkbox" class="ck-tarjeta" no-tarj="@tarj.numero_cuenta" id="ck-@tarj.id"
+                                   value="@tarj.id">
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+    <h3>Direcciones</h3>
+    <table class="table table-bordered table-responsive table-striped" style="border-color: #dc3545">
+        <thead class="bg-danger text-white">
+            <tr class="info">
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((int)ViewBag.countD == 0)
+            {
+                <tr>
+                    <td colspan="3">@Html.ActionLink("Agregar Dirección", "Create", "Direccion")</td>
+                </tr>
+            }
+            else
+            {
+                foreach (Direccion dir in ViewBag.direcciones)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => dir.calle)
+                            @Html.DisplayFor(modelItem => dir.numExterior)
+                            @Html.DisplayFor(modelItem => dir.colonia)
+                            @Html.DisplayFor(modelItem => dir.municipio)
+                            @Html.DisplayFor(modelItem => dir.estado)
+                            @Html.DisplayFor(modelItem => dir.codigo_postal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => dir.tel)
+                        </td>
+                        <td><input type="checkbox" class="ck-direccion" id="ck-@dir.id" value="@dir.id"></td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+    <hr />
+
+    <h4>Su Orden</h4>
+    <table class="table table-bordered table-responsive table-striped" style="border-color: #dc3545">
+        <thead class="bg-danger text-white">
+            <tr class="info">
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>SubTotal</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Item itm in (List<Item>)Session["cart"])
+            {
+                <tr>
+                    <td align="center">
+                        <img src="~/Content/img/productos/@itm.Producto.imagen" width="100px"
+                             height="100px" />
+                    </td>
+
+                    <td>@itm.Producto.nombre</td>
+                    <td>$ @itm.Producto.precio</td>
+
+                    <td>@itm.Cantidad</td>
+                    <td>@(itm.Cantidad * itm.Producto.precio)</td>
+
+
+                </tr>
+            }
+            <tr>
+                <td align="right" colspan="4">Total</td>
+                <td align="center" colspan="1">
+                    @{
+                        List<Item> carro = (List<Item>)Session["cart"];
+                        var total = carro.Sum(Item => Item.Producto.precio * Item.Cantidad);
+                    }
+                    $ @total
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="card card-default">
+        <div class="ca-body" style="display:flex;justify-content: center; align-items: center;">
+            <a id="a-pago-tarj" style="text-align:center">
+                <img src="~/Content/img/recursos/TarjetaIcon.png" alt="TarjetaIcon" width="150px" height="150px"
+                     id="imgTarjeta" style="cursor:pointer" />
+                <p id="nombreTarjeta"></p>
+            </a>
+
+        </div>
+    </div>
+    <br>
+
+    <div class="card card-default">
+        <div class="card-body" style="display:flex;justify-content: center; align-items: center;">
+            <a id="a-pago-paypal" style="text-align:center">
+                <img src="~/Content/img/recursos/Paypal.png" alt="PayPal" width="150px" height="150px"
+                     style="cursor:pointer" />
+            </a>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Generados/CrearOrdenUtils.js"></script>
+<script src="~/Scripts/Librerias/bootbox.min.js"></script>
