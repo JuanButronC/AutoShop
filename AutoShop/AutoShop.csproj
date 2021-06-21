@@ -176,6 +176,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\productoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -206,6 +207,7 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemPedido.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modelo.Context.cs">
       <AutoGen>True</AutoGen>
@@ -231,6 +233,7 @@
     <Compile Include="Models\Paqueteria.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedidoCliente.cs" />
     <Compile Include="Models\Producto.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -381,10 +384,15 @@
     <Content Include="Views\producto\getProductos.cshtml" />
     <Content Include="Views\producto\getExistencias.cshtml" />
     <Content Include="Views\producto\getProdMayor.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Pedido\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
