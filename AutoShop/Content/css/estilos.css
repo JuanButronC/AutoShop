@@ -1,0 +1,77 @@
+﻿.prod-name {
+    color: white !important;
+}
+
+.bg-danger {
+    background-color: #e33b5c !important;
+}
+
+.bg-info {
+    background-color: #e33b5c !important;
+}
+
+
+.btn-c {
+    background-color: #e33b5c !important;
+}
+
+.bg-c {
+    background-color: #e33b5c !important;
+    border-color: #ffefef !important;
+    color: #ffefef !important;
+}
+
+.btn-c-selected {
+    background-color: #ffefef !important;
+    border-color: #e33b5c !important;
+    color: #e33b5c !important;
+}
+
+    .btn-c-selected:hover {
+        background-color: #e33b5c !important;
+        border-color: #ffefef !important;
+        color: #ffefef !important;
+    }
+
+
+.border-ca {
+    border-color: #e33b5c !important;
+}
+
+.text-ca {
+    color: #e33b5c !important;
+}
+
+.bg-secondary {
+    background-color: #ffefef !important;
+}
+
+.card-secondary {
+    background-color: #ffefef !important;
+    border-color: #e33b5c !important;
+    color: #e33b5c !important;
+}
+
+
+.btn-c:hover, .btn-c:focus, .btn-c:active, .btn-c.active, .open > .dropdown-toggle.btn-c {
+    background-color: #ffefef !important;
+    border-color: #e33b5c !important;
+    color: #e33b5c !important;
+}
+
+.scroll-y {
+    height: 250px;
+    overflow-y: scroll
+}
+
+footer {
+    margin-top: 25px;
+    bottom: 0;
+    width: 100%;
+    height: 8%;
+    color: white;
+}
+
+body {
+    background-color: rgb(255, 239, 239)
+}
