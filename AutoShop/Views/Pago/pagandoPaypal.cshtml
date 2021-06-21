@@ -1,0 +1,51 @@
+﻿@using AutoShop.Models;
+@{
+    ViewBag.Title = "pagandoPaypal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idDir = Convert.ToInt32(Session["idDir"]);
+
+    int idClient = Convert.ToInt32(Session["idClient"]);
+    string nombre = Session["usr"].ToString();
+    List<Item> cart = (List<Item>)Session["cart"];
+    var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
+}
+
+<div class="panel panel-default" style="margin-top:25px">
+    <div class="panel-body">
+
+        <div style="display:flex;justify-content: center; align-items: center;">
+            <img src="~/Content/img/recursos/Paypal.png" style="margin:auto" width="200px" height="100px" />
+        </div>
+        <h3 style="text-align:center">Bienvenido @nombre</h3>
+        <hr />
+        <table class="table table-bordered table-responsive table-striped">
+            <caption>Acepta el pago de</caption>
+            <tbody>
+                <tr>
+                    <td colspan="2">AutoShop - Lo mejor en automóviles.</td>
+
+                </tr>
+                <tr>
+                    <td>Importe a pagar:</td>
+                    <td>$@total MXN</td>
+
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <a class="btn btn-primary" href="@Url.Action("PagoAceptado","Pago",new { idC=idClient,idD=idDir, idTar=0})">Pagar</a>
+                        <a class="btn btn-danger" href="@Url.Action("pagoNoAceptado","Pago")">Cancelar Pago</a>
+                    </td>
+
+                </tr>
+            </tfoot>
+        </table>
+
+
+
+    </div>
+
+</div>
+

@@ -79,7 +79,8 @@ namespace AutoShop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    string correo = model.Email;
+                    return RedirectToAction("Index", "Usuario", routeValues: new { email = correo });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -156,14 +157,26 @@ namespace AutoShop.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    bool dominio = user.Email.ToString().Contains("@autoshop.com");
+                    if (dominio)
+                    {
+                        string correo = model.Email;
+                        return RedirectToAction("Index", "Usuario", routeValues: new { email = correo });
+                    }
+                    else
+                    {
+                        Session["name"] = "";
+                        Session["correo"] = user.Email;
+
+                    }
+                    return RedirectToAction("Create", "Cliente");
                 }
                 AddErrors(result);
             }

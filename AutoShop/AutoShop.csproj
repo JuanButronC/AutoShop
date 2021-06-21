@@ -178,8 +178,11 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\AlmacenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PaqueteriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -310,6 +313,8 @@
     <Content Include="Scripts\Generados\Administrador\accionesAdministrador.js" />
     <Content Include="Scripts\Generados\Catalogo\accionesCatalogo.js" />
     <Content Include="Scripts\Generados\Catalogo\accionesProducto.js" />
+    <Content Include="Scripts\Generados\ImgPreview_CreateP.js" />
+    <Content Include="Scripts\Generados\ImgPreview_EditP.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -387,6 +392,20 @@
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Empleado\DetailsPartial.cshtml" />
     <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAlmacenEnvios.cshtml" />
+    <Content Include="Views\Paqueteria\Create.cshtml" />
+    <Content Include="Views\Paqueteria\Delete.cshtml" />
+    <Content Include="Views\Paqueteria\Details.cshtml" />
+    <Content Include="Views\Paqueteria\Edit.cshtml" />
+    <Content Include="Views\Paqueteria\Index.cshtml" />
+    <Content Include="Views\Paqueteria\Home.cshtml" />
+    <Content Include="Views\Pago\CrearOrden.cshtml" />
+    <Content Include="Views\Pago\pagandoPaypal.cshtml" />
+    <Content Include="Views\Pago\Pagar.cshtml" />
+    <Content Include="Views\Pago\PagoAceptado.cshtml" />
+    <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
+    <Content Include="Views\Pago\pagoPaypal.cshtml" />
+    <Content Include="Views\Almacen\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
