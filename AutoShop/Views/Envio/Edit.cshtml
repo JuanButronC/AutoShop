@@ -5,58 +5,87 @@
     Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 
-    <div class="form-horizontal">
-        <h4>Envio</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
 
-        @Html.HiddenFor(model => model.id_orden_fk)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_paq_fk, "id_paq_fk", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_paq_fk", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_paq_fk, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.numero_guia, "numero_guia", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.numero_guia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_paq_fk, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.id_cliente_fk)
-
-        @Html.HiddenFor(model => model.id_direccion_fk)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha_envio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.fecha_envio, new { @type = "date", @min = @Model.Orden.fecha_creacion.ToString("yyyy-MM-dd"), @class = "form-control datepicker" })
-                @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.fecha_entrega)
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div align="left"><h1>Actualización de Fecha de Envío</h1></div><hr><br>
     </div>
-}
+    <div class="col-md-12">
+        <div class="card border-danger">
+            <div class="card-body" style="padding-left: 200px; padding-right: 200px; padding-top: 50px;padding-bottom: 50px;">
+                <div class="card border-danger  form-horizontal">
+                    <div class="card-header bg-danger text-white border-danger"><h3>Actualizar fecha de envío</h3></div>
+                    <div class="card-body">
+                        <br><br>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-12 pt-5" align="center">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">ID Paquetería</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("id_paq_fk", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.id_paq_fk, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Número de guía</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.EditorFor(model => model.numero_guia, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.id_paq_fk, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Fecha de envío</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(model => model.fecha_envio, new { @type = "date", @min = @Model.Orden.fecha_creacion.ToString("yyyy-MM-dd"), @class = "form-control datepicker" })
+                                            @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" align="left">
+                                    <br><br><br>
+                                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Index", "Envio")">Regresar</a>
+                                </div>
+                                <div class="col-md-6" align="right">
+                                    <br><br><br>
+                                    <input class="btn btn-dark" style="width: 20%" type="submit" value="Guardar">
+                                </div>
+                            </div><br>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
 </div>
+<script src="~/Scripts/Generados/ImgPreview_EditP.js"></script>

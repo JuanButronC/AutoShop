@@ -49,3 +49,84 @@
 <div>
     @Html.ActionLink("Back to List", "Index1")
 </div>
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div align="left"><h1>Actualización de Fecha de Entrega</h1></div><hr><br>
+    </div>
+    <div class="col-md-12">
+        <div class="card border-danger">
+            <div class="card-body" style="padding-left: 200px; padding-right: 200px; padding-top: 50px;padding-bottom: 50px;">
+                <div class="card border-danger  form-horizontal">
+                    <div class="card-header bg-danger text-white border-danger"><h3>Actualizar fecha de entrega</h3></div>
+                    <div class="card-body">
+                        <br><br>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-12 pt-5" align="center">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px"></p>
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px"></p>
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Fecha de entrega</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.TextBoxFor(model => model.fecha_entrega, new { @type = "date", @min = @Model.fecha_envio.GetValueOrDefault().ToString("yyyy-MM-dd"), @class = "form-control datepicker" })
+                                            @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" align="left">
+                                    <br><br><br>
+                                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Index1", "Envio")">Regresar</a>
+                                </div>
+                                <div class="col-md-6" align="right">
+                                    <br><br><br>
+                                    <input class="btn btn-dark" style="width: 20%" type="submit" value="Guardar">
+                                </div>
+                            </div><br>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+<script src="~/Scripts/Generados/ImgPreview_EditP.js"></script>

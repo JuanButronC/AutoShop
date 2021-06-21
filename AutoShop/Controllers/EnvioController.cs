@@ -45,15 +45,15 @@ namespace AutoShop.Controllers
             foreach (Envio listado in (List<Envio>)query)
             {
                 DateTime date = Convert.ToDateTime(listado.fecha_envio);
-                if (date >= fechahoy)
+                if (date <= fechahoy)
                 {
                     enviosHoy++;
                 }
-                if (date >= fechasemana)
+                if (date <= fechasemana)
                 {
                     enviosSemana++;
                 }
-                if (date >= fechaanio)
+                if (date <= fechaanio)
                 {
                     enviosAnio++;
                 }
