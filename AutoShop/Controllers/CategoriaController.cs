@@ -86,8 +86,16 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,descripcion")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "id,nombre,descripcion")] Categoria categoria, HttpPostedFileBase imagen)
         {
+
+            if (imagen != null && imagen.ContentLength > 0)
+            {
+                using (var reader = new System.IO.BinaryReader(imagen.InputStream))
+                {
+                    categoria.imagen = reader.ReadBytes(imagen.ContentLength);
+                }
+            }
             if (ModelState.IsValid)
             {
                 int id = categoria.id;
@@ -95,6 +103,7 @@ namespace AutoShop.Controllers
                 //db.Entry(producto).State = EntityState.Modified;
                 prod.nombre = categoria.nombre;
                 prod.descripcion = categoria.descripcion;
+                prod.imagen = categoria.imagen;
                 db.SaveChanges();
                 return RedirectToAction("Index");
 
@@ -150,7 +159,7 @@ namespace AutoShop.Controllers
 
         public ActionResult getExistenciasCat()
         {
-            var producto = db.Categoria.Take(5).ToList();
+            var producto = db.Categoria.Take(3).ToList();
             return View(producto);
         }
     }
