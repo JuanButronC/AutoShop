@@ -11,7 +11,7 @@
     @Styles.Render("~/Content/css/estilos.css")
 
 </head>
-<body style="padding-top: 0;">
+<body style="padding-top: 0; padding-bottom:0px;">
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -34,14 +34,6 @@
 
                     <li class="nav-item">
                         @Html.ActionLink("Productos", "Index", "Catalogo", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
 
                     <li>
@@ -91,7 +83,7 @@
         <br />
     </div>
 
-    <footer class="text-white" style="background-color: #e33b5c; padding: 15px; ">
+    <footer class="text-white" style="background-color: #e33b5c; padding: 15px; margin-bottom:0px ">
         <div class="row">
             <div class="col-md-4">
                 <div style="padding: 15px;">
