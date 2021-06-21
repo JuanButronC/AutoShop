@@ -298,6 +298,8 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Generados\ImgPreview_CreateP.js" />
+    <Content Include="Scripts\Generados\ImgPreview_EditP.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -372,10 +374,10 @@
     <Content Include="Views\Pago\PagoAceptado.cshtml" />
     <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
     <Content Include="Views\Pago\pagoPaypal.cshtml" />
+    <Content Include="Views\Almacen\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Almacen\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
