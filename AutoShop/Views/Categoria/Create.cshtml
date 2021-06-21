@@ -1,0 +1,86 @@
+﻿@model AutoShop.Models.Categoria
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+
+<div class="text-white sticky-title p-2" style="background-color: #e33b5c">
+    <h1>Crear Categoría</h1>
+</div>
+
+@using (Html.BeginForm("Create", "Categoria", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal text-left">
+        <div class="card" style="margin-top: 15px; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+            <div class="card-body">
+                <p style="font-size: 24px">Complete los siguientes campos para poder añadir una nueva <b>categoría</b> .</p>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 15px; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+            <div class="card-body" style="padding-left:3%; padding-top:3%; font-size:24px">
+                <div class="row">
+                    <div class="col-md-4" style="padding-top: 2%; padding-left: 3%; padding-right: 3%">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                            <div class="col-md-10" style="margin-top:15px">
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+
+                            <div class="col-md-10" style="margin-top:15px">
+                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+
+                            <div class="col-md-10" style="margin-top:15px">
+                                @Html.TextBoxFor(model => model.imagen, new { @type = "file", @class = "form-control", accept = ".jpg", id = "seleccionArchivos" })
+                                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card" style="margin-top: 15px; margin-left: 25px; margin-right: 25px; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+                            <div class="card-body">
+                                <label>Imagen:</label>
+                                <div class="row">
+                                    <div class="offset-md-2 col-md-8">
+                                        <div class="card" style=" margin-left: 5%; margin-right: 5%; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+                                            <div class="card-body text-center">
+                                                <img id="imagenPrevisualizacion" src="https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_960_720.png" class="panel-img-top" height="190" alt="Card image cap">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <hr />
+                <div class="form-group text-center">
+
+                    <input type="submit" value="Guardar Categoría" class="btn btn-danger" />
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+}
+
+<script src="~/Scripts/Generados/Categorias/Categorias.js"></script>

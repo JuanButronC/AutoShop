@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AutoShop.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+@{
+    string mensaje = "Bienvenido al Home de Categorías ";
+    string name = @Session["usr"].ToString();
+}
+
+<h2><b> @mensaje  @name </b></h2>
+<hr class="bg-danger mb-4" />
+
+<div class="text-white sticky-title p-2" style="background-color: #e33b5c">
+    <h1>Categorías</h1>
+</div>
+<div class="card mt-3" style="background-color: rgb(255, 239, 239); border-color: #e33b5c">
+    <div class="card-body">
+        <p style="font-size: 24px">
+            A continuación, se muestran todas las categorías añadidas, con la posibilidad de crear una nueva o en su defecto
+            actualizar o eliminar las ya existentes.
+        </p>
+    </div>
+</div>
+
+
+<div id="categorias">
+
+</div>
+
+<div class="card mt-5" style="background-color: rgb(255, 239, 239); border-color: #e33b5c">
+    <div class="card-body p-5">
+        <h2><u><b>Todas las Categorías</b></u></h2>
+        <br>
+        <div class="mb-3" style="font-size: 16px">
+            <a href="@Url.Action("Create", "Categoria")" class="btn btn-danger"><i class="fa fa-plus-square"></i> Crear Categoría</a>
+
+        </div>
+        <table class="table table-striped table-bordered">
+            <tr class="bg-danger text-white">
+                <th scope="col">ID</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Descripción</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td align="center"><a href="@Url.Action("Edit", "Categoria", new { id = item.id })" class="btn btn-danger"><i class="fa fa-pencil-square"></i></a></td>
+                    <td align="center"><a href="@Url.Action("Delete", "Categoria", new { id = item.id })" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script src="~/Scripts/Generados/Categorias/Categorias.js"></script>

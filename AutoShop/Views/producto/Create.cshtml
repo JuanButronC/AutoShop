@@ -1,0 +1,131 @@
+﻿@model AutoShop.Models.Producto
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+<div class="text-white sticky-title p-2" style="background-color: #e33b5c">
+    <h1>Crear Producto</h1>
+</div>
+
+@using (Html.BeginForm(Html.BeginForm("Create", "producto", null, FormMethod.Post, new { enctype = "multipart/form-data" })))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <div class="card" style="margin-top: 15px; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+            <div class="card-body" style="padding-left:3%; padding-top:3%; font-size:24px">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="offset-md-2 col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.id_categoria, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control col-md-10" })
+                                        @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.precio, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                        @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.descuento, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(model => model.descuento,
+                            new List<SelectListItem>{
+                                new SelectListItem { Value="10",Text="10%"},
+                                new SelectListItem { Value="20",Text="20%"},
+                                new SelectListItem { Value="30",Text="30%"},
+                                new SelectListItem { Value="40",Text="40%"},
+                                new SelectListItem { Value="50",Text="50%"},
+                                new SelectListItem { Value="60",Text="60%"},
+                                new SelectListItem { Value="70",Text="70%"},
+                                new SelectListItem { Value="80",Text="80%"},
+                                new SelectListItem { Value="90",Text="90%"},
+                                new SelectListItem { Value="100",Text="100%"},
+                            }, new {@class= "miselect  col-md-10", @style="width:100%; height:40px"})
+                                        @Html.ValidationMessageFor(model => model.descuento, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-8", @style = "text-align:left; font-size: 24px" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                        @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group ml-3">
+                                @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left; font-size: 24px" })
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.imagen, new { @type = "file", @class = "form-control col-md-12", accept = ".jpg", id = "seleccionArchivos" })
+                                    @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="offset-md-2 col-md-8 ">
+                    <div class="card" style="margin-top: 15px; margin-left: 25px; margin-right: 25px; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+                        <div class="card-body">
+                            <label>Imagen:</label>
+                            <div class="row">
+                                <div class="offset-md-2 col-md-8">
+                                    <div class="card" style=" margin-left: 5%; margin-right: 5%; background-color: rgb(255, 239, 239); border-color: #e33b5c">
+                                        <div class="card-body text-center">
+                                            <img id="imagenPrevisualizacion" src="https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_960_720.png" class="panel-img-top" height="190" alt="Card image cap">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="text-center">
+                        <input type="submit" value="Guardar Producto" class="btn btn-danger" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+}
+
+<script src="~/Scripts/Generados/Productos/Productos.js"></script>

@@ -183,6 +183,12 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PaqueteriaController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
+    <Compile Include="Controllers\productoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +215,8 @@
     <Compile Include="Models\ImagenesEmpleado.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemPedido.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modelo.Context.cs">
       <AutoGen>True</AutoGen>
@@ -234,6 +242,7 @@
     <Compile Include="Models\Paqueteria.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedidoCliente.cs" />
     <Compile Include="Models\Producto.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -315,6 +324,8 @@
     <Content Include="Scripts\Generados\Catalogo\accionesProducto.js" />
     <Content Include="Scripts\Generados\ImgPreview_CreateP.js" />
     <Content Include="Scripts\Generados\ImgPreview_EditP.js" />
+    <Content Include="Scripts\Generados\Categorias\Categorias.js" />
+    <Content Include="Scripts\Generados\Productos\Productos.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -406,9 +417,33 @@
     <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
     <Content Include="Views\Pago\pagoPaypal.cshtml" />
     <Content Include="Views\Almacen\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutCompras.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial1.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\getExistenciasCat.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\producto\Create.cshtml" />
+    <Content Include="Views\producto\Delete.cshtml" />
+    <Content Include="Views\producto\Details.cshtml" />
+    <Content Include="Views\producto\Edit.cshtml" />
+    <Content Include="Views\producto\Index.cshtml" />
+    <Content Include="Views\producto\getProductos.cshtml" />
+    <Content Include="Views\producto\getExistencias.cshtml" />
+    <Content Include="Views\producto\getProdMayor.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
