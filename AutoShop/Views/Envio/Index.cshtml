@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AutoShop.Models.Envio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+}
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+<br />
+<h1>Actualización de Fecha de envio</h1>
+<hr />
+<div class="col-md-12" style="min-height:700px">
+    <br>
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <br>
+            <div align="left"><h3>Todos los pedidos realizados</h3></div>
+        </div>
+        <div class="card-body">
+            @{
+                if (Model.Count() == 0)
+                {
+                    <div class="jumbotron text-center" style="font-size:30px">¡Estás al día! No hay pedidos realizados.</div>
+                }
+                else
+                {
+
+                    <table class="table table-dark table-striped table-hover table-bordered">
+                        <thead>
+                            <tr class="bg-danger text-white">
+                                <th>ID de Cliente</th>
+                                <th>Nombre de Cliente</th>
+                                <th>Fecha de Creación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Orden.id_cliente_fk)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Cliente.nombre)
+                                        @Html.DisplayNameFor(model => model.Cliente.apPaterno)
+                                        @Html.DisplayNameFor(model => model.Cliente.apMaterno)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Orden.fecha_creacion)
+                                    </td>
+
+                                    <td style="text-align:center; vertical-align:middle">
+                                        <a class="btn btn-info" href="@Url.Action("Edit", "Envio", new { id=item.id }) " style="margin:10px">Colocar fecha de Envio</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+
+            <div class="row">
+                <div class="col-md-6" align="left">
+                    <br><br><br>
+                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Home", "Envio")">Regresar</a>
+                </div>
+            </div><br>
+        </div>
+    </div>
+</div>

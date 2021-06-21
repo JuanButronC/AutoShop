@@ -1,0 +1,67 @@
+﻿@model AutoShop.Models.Envio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Envio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_envio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_envio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_entrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_entrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Orden.numero_confirmacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Orden.numero_confirmacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paqueteria.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paqueteria.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

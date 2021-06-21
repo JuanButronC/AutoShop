@@ -1,0 +1,51 @@
+﻿
+@model AutoShop.Models.Envio
+
+@{
+    ViewBag.Title = "Edit1";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Envio</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        @Html.HiddenFor(model => model.id_orden_fk)
+        @Html.HiddenFor(model => model.id_paq_fk)
+        @Html.HiddenFor(model => model.numero_guia)
+
+
+        @Html.HiddenFor(model => model.id_cliente_fk)
+
+        @Html.HiddenFor(model => model.id_direccion_fk)
+        @Html.HiddenFor(model => model.fecha_envio)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_entrega, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fecha_entrega, new { @type = "date", @min = @Model.fecha_envio.GetValueOrDefault().ToString("yyyy-MM-dd"), @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index1")
+</div>
