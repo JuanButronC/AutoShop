@@ -1,0 +1,82 @@
+﻿@model AutoShop.Models.Tarjeta
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tarjeta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mes_vencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mes_vencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio_vencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio_vencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cvv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cvv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoTarj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoTarj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.correo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "MisTarjetas")
+        </div>
+    }
+</div>
