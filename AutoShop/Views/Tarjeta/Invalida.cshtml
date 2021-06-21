@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Invalida";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Su tarjeta no es válida, deberá registrar nuevamente una tarjeta válida.</h2>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        @if (ViewBag.esEdicion)
+        {
+            @Html.ActionLink("Continuar", "MisTarjetas", "Tarjeta", new { area = "" }, new { @class = "btn btn-success" })
+        }
+        else
+        {
+            @Html.ActionLink("Continuar", "Create", "Tarjeta", new { area = "" }, new { @class = "btn btn-success" })
+        }
+    </div>
+</div>

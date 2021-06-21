@@ -1,0 +1,75 @@
+﻿@model AutoShop.Models.Tarjeta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarjeta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mes_vencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mes_vencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio_vencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio_vencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cvv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cvv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoTarj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoTarj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.correo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "MisTarjetas")
+</p>
