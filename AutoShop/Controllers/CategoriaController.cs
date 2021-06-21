@@ -46,8 +46,16 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,descripcion,imagen")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "id,nombre,descripcion")] Categoria categoria, HttpPostedFileBase imagen)
         {
+            if (imagen != null && imagen.ContentLength > 0)
+            {
+                using (var reader = new System.IO.BinaryReader(imagen.InputStream))
+                {
+                    categoria.imagen = reader.ReadBytes(imagen.ContentLength);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Categoria.Add(categoria);
@@ -78,13 +86,18 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,descripcion,imagen")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "id,nombre,descripcion")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
+                int id = categoria.id;
+                var prod = db.Categoria.Find(id);
+                //db.Entry(producto).State = EntityState.Modified;
+                prod.nombre = categoria.nombre;
+                prod.descripcion = categoria.descripcion;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
             return View(categoria);
         }
@@ -122,6 +135,23 @@ namespace AutoShop.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //metodo para obtener imagen
+        public ActionResult getImg(int id)
+        {
+            Categoria imgPaq = (from i in db.Categoria
+                                where i.id == id
+                                select i).ToList().FirstOrDefault();
+
+            var fileToRetrieve = imgPaq.imagen;
+            return File(fileToRetrieve, "image/jpeg");
+        }
+
+        public ActionResult getExistenciasCat()
+        {
+            var producto = db.Categoria.Take(5).ToList();
+            return View(producto);
         }
     }
 }
