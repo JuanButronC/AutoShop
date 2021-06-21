@@ -248,6 +248,7 @@
     <Compile Include="Models\Producto.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductoCarro.cs" />
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

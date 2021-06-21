@@ -175,17 +175,6 @@ namespace AutoShop.Controllers
                         Session["name"] = "";
                         Session["correo"] = user.Email;
 
-                    bool dominio = user.Email.ToString().Contains("@autoshop.com");
-                    if (dominio)
-                    {
-                        string correo = model.Email;
-                        return RedirectToAction("Index", "Usuario", routeValues: new { email = correo });
-                    }
-                    else
-                    {
-                        Session["name"] = "";
-                        Session["correo"] = user.Email;
-
                     }
                     return RedirectToAction("Create", "Cliente");
                 }
