@@ -1,0 +1,1049 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AutoShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="imagen" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" />
+          <Property Name="apPaterno" Type="nvarchar" MaxLength="30" />
+          <Property Name="apMaterno" Type="nvarchar" MaxLength="30" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="sexo" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Comentarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="int" Nullable="false" />
+          <Property Name="id_producto_fk" Type="int" Nullable="false" />
+          <Property Name="comentario" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="municipio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="colonia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="numExterior" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="codigo_postal" Type="int" Nullable="false" />
+          <Property Name="tel" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contrasenia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="correo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="rol_fk" Type="int" Nullable="false" />
+          <Property Name="imagen_fk" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Envio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_orden_fk" Type="int" Nullable="false" />
+          <Property Name="id_paq_fk" Type="int" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="int" Nullable="false" />
+          <Property Name="id_direccion_fk" Type="int" Nullable="false" />
+          <Property Name="fecha_envio" Type="date" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="numero_guia" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ImagenesEmpleado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imagen" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="int" Nullable="false" />
+          <Property Name="id_direccion_fk" Type="int" Nullable="false" />
+          <Property Name="id_tarjeta_fk" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="numero_confirmacion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orden_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_orden_fk" Type="int" Nullable="false" />
+          <Property Name="id_prod_fk" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paqueteria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="transporte" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="imagen" Type="image" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="imagen" Type="image" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="numero_cuenta" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mes_vencimiento" Type="int" Nullable="false" />
+          <Property Name="anio_vencimiento" Type="int" Nullable="false" />
+          <Property Name="cvv" Type="int" Nullable="false" />
+          <Property Name="tipoTarj" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Comentari__id_cl__47DBAE45">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comentari__id_pr__48CFD27E">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="id_producto_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Direccion__id_cl__25869641">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__imagen__34C8D9D1">
+          <End Role="ImagenesEmpleado" Type="Self.ImagenesEmpleado" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImagenesEmpleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="imagen_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__rol_fk__33D4B598">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="rol_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_client__4316F928">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_direcc__44FF419A">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_direccion_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_orden___440B1D61">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_orden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_paq_fk__4222D4EF">
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paqueteria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_paq_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_client__2B3F6F97">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_direcc__2C3393D0">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_direccion_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_tarjet__2D27B809">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_tarjeta_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Pro__id_or__3E52440B">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
+          <End Role="Orden_Producto" Type="Self.Orden_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden_Producto">
+              <PropertyRef Name="id_orden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Pro__id_pr__3F466844">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Orden_Producto" Type="Self.Orden_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden_Producto">
+              <PropertyRef Name="id_prod_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__id_cat__398D8EEE">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarjeta__id_clie__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoShopModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Envio" EntityType="Self.Envio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagenesEmpleado" EntityType="Self.ImagenesEmpleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden" EntityType="Self.Orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden_Producto" EntityType="Self.Orden_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Comentari__id_cl__47DBAE45" Association="Self.FK__Comentari__id_cl__47DBAE45">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comentari__id_pr__48CFD27E" Association="Self.FK__Comentari__id_pr__48CFD27E">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Direccion__id_cl__25869641" Association="Self.FK__Direccion__id_cl__25869641">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__imagen__34C8D9D1" Association="Self.FK__Empleado__imagen__34C8D9D1">
+            <End Role="ImagenesEmpleado" EntitySet="ImagenesEmpleado" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__rol_fk__33D4B598" Association="Self.FK__Empleado__rol_fk__33D4B598">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_client__4316F928" Association="Self.FK__Envio__id_client__4316F928">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_direcc__44FF419A" Association="Self.FK__Envio__id_direcc__44FF419A">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_orden___440B1D61" Association="Self.FK__Envio__id_orden___440B1D61">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_paq_fk__4222D4EF" Association="Self.FK__Envio__id_paq_fk__4222D4EF">
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_client__2B3F6F97" Association="Self.FK__Orden__id_client__2B3F6F97">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_direcc__2C3393D0" Association="Self.FK__Orden__id_direcc__2C3393D0">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_tarjet__2D27B809" Association="Self.FK__Orden__id_tarjet__2D27B809">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Pro__id_or__3E52440B" Association="Self.FK__Orden_Pro__id_or__3E52440B">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Orden_Producto" EntitySet="Orden_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Pro__id_pr__3F466844" Association="Self.FK__Orden_Pro__id_pr__3F466844">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Orden_Producto" EntitySet="Orden_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__id_cat__398D8EEE" Association="Self.FK__Producto__id_cat__398D8EEE">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarjeta__id_clie__286302EC" Association="Self.FK__Tarjeta__id_clie__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__id_cat__398D8EEE" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="apPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="apMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comentarios" Relationship="Self.FK__Comentari__id_cl__47DBAE45" FromRole="Cliente" ToRole="Comentarios" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Direccion__id_cl__25869641" FromRole="Cliente" ToRole="Direccion" />
+          <NavigationProperty Name="Envio" Relationship="Self.FK__Envio__id_client__4316F928" FromRole="Cliente" ToRole="Envio" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__id_client__2B3F6F97" FromRole="Cliente" ToRole="Orden" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Tarjeta__id_clie__286302EC" FromRole="Cliente" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Comentarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_producto_fk" Type="Int32" Nullable="false" />
+          <Property Name="comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Comentari__id_cl__47DBAE45" FromRole="Comentarios" ToRole="Cliente" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Comentari__id_pr__48CFD27E" FromRole="Comentarios" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente_fk" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="municipio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numExterior" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigo_postal" Type="Int32" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Direccion__id_cl__25869641" FromRole="Direccion" ToRole="Cliente" />
+          <NavigationProperty Name="Envio" Relationship="Self.FK__Envio__id_direcc__44FF419A" FromRole="Direccion" ToRole="Envio" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__id_direcc__2C3393D0" FromRole="Direccion" ToRole="Orden" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rol_fk" Type="Int32" Nullable="false" />
+          <Property Name="imagen_fk" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ImagenesEmpleado" Relationship="Self.FK__Empleado__imagen__34C8D9D1" FromRole="Empleado" ToRole="ImagenesEmpleado" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Empleado__rol_fk__33D4B598" FromRole="Empleado" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Envio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_orden_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_paq_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_direccion_fk" Type="Int32" Nullable="false" />
+          <Property Name="fecha_envio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_entrega" Type="DateTime" Precision="0" />
+          <Property Name="numero_guia" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Envio__id_client__4316F928" FromRole="Envio" ToRole="Cliente" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Envio__id_direcc__44FF419A" FromRole="Envio" ToRole="Direccion" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Envio__id_orden___440B1D61" FromRole="Envio" ToRole="Orden" />
+          <NavigationProperty Name="Paqueteria" Relationship="Self.FK__Envio__id_paq_fk__4222D4EF" FromRole="Envio" ToRole="Paqueteria" />
+        </EntityType>
+        <EntityType Name="ImagenesEmpleado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__imagen__34C8D9D1" FromRole="ImagenesEmpleado" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Orden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_direccion_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_tarjeta_fk" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="numero_confirmacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Orden__id_client__2B3F6F97" FromRole="Orden" ToRole="Cliente" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Orden__id_direcc__2C3393D0" FromRole="Orden" ToRole="Direccion" />
+          <NavigationProperty Name="Envio" Relationship="Self.FK__Envio__id_orden___440B1D61" FromRole="Orden" ToRole="Envio" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.FK__Orden__id_tarjet__2D27B809" FromRole="Orden" ToRole="Tarjeta" />
+          <NavigationProperty Name="Orden_Producto" Relationship="Self.FK__Orden_Pro__id_or__3E52440B" FromRole="Orden" ToRole="Orden_Producto" />
+        </EntityType>
+        <EntityType Name="Orden_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_orden_fk" Type="Int32" Nullable="false" />
+          <Property Name="id_prod_fk" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden_Pro__id_or__3E52440B" FromRole="Orden_Producto" ToRole="Orden" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Orden_Pro__id_pr__3F466844" FromRole="Orden_Producto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Paqueteria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transporte" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Envio" Relationship="Self.FK__Envio__id_paq_fk__4222D4EF" FromRole="Paqueteria" ToRole="Envio" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__id_cat__398D8EEE" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Comentarios" Relationship="Self.FK__Comentari__id_pr__48CFD27E" FromRole="Producto" ToRole="Comentarios" />
+          <NavigationProperty Name="Orden_Producto" Relationship="Self.FK__Orden_Pro__id_pr__3F466844" FromRole="Producto" ToRole="Orden_Producto" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__rol_fk__33D4B598" FromRole="Roles" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente_fk" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numero_cuenta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mes_vencimiento" Type="Int32" Nullable="false" />
+          <Property Name="anio_vencimiento" Type="Int32" Nullable="false" />
+          <Property Name="cvv" Type="Int32" Nullable="false" />
+          <Property Name="tipoTarj" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Tarjeta__id_clie__286302EC" FromRole="Tarjeta" ToRole="Cliente" />
+          <NavigationProperty Name="Orden" Relationship="Self.FK__Orden__id_tarjet__2D27B809" FromRole="Tarjeta" ToRole="Orden" />
+        </EntityType>
+        <Association Name="FK__Producto__id_cat__398D8EEE">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comentari__id_cl__47DBAE45">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Direccion__id_cl__25869641">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_client__4316F928">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_client__2B3F6F97">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tarjeta__id_clie__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="id_cliente_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comentari__id_pr__48CFD27E">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="id_producto_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_direcc__44FF419A">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_direccion_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_direcc__2C3393D0">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_direccion_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__imagen__34C8D9D1">
+          <End Role="ImagenesEmpleado" Type="Self.ImagenesEmpleado" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImagenesEmpleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="imagen_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__rol_fk__33D4B598">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="rol_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_orden___440B1D61">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_orden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Envio__id_paq_fk__4222D4EF">
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
+          <End Role="Envio" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paqueteria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Envio">
+              <PropertyRef Name="id_paq_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden__id_tarjet__2D27B809">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Orden" Type="Self.Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden">
+              <PropertyRef Name="id_tarjeta_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Pro__id_or__3E52440B">
+          <End Role="Orden" Type="Self.Orden" Multiplicity="1" />
+          <End Role="Orden_Producto" Type="Self.Orden_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden_Producto">
+              <PropertyRef Name="id_orden_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Pro__id_pr__3F466844">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Orden_Producto" Type="Self.Orden_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orden_Producto">
+              <PropertyRef Name="id_prod_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="contextAutoShop" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Envio" EntityType="Self.Envio" />
+          <EntitySet Name="ImagenesEmpleado" EntityType="Self.ImagenesEmpleado" />
+          <EntitySet Name="Orden" EntityType="Self.Orden" />
+          <EntitySet Name="Orden_Producto" EntityType="Self.Orden_Producto" />
+          <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <AssociationSet Name="FK__Producto__id_cat__398D8EEE" Association="Self.FK__Producto__id_cat__398D8EEE">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comentari__id_cl__47DBAE45" Association="Self.FK__Comentari__id_cl__47DBAE45">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Direccion__id_cl__25869641" Association="Self.FK__Direccion__id_cl__25869641">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_client__4316F928" Association="Self.FK__Envio__id_client__4316F928">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_client__2B3F6F97" Association="Self.FK__Orden__id_client__2B3F6F97">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tarjeta__id_clie__286302EC" Association="Self.FK__Tarjeta__id_clie__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comentari__id_pr__48CFD27E" Association="Self.FK__Comentari__id_pr__48CFD27E">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_direcc__44FF419A" Association="Self.FK__Envio__id_direcc__44FF419A">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_direcc__2C3393D0" Association="Self.FK__Orden__id_direcc__2C3393D0">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__imagen__34C8D9D1" Association="Self.FK__Empleado__imagen__34C8D9D1">
+            <End Role="ImagenesEmpleado" EntitySet="ImagenesEmpleado" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__rol_fk__33D4B598" Association="Self.FK__Empleado__rol_fk__33D4B598">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_orden___440B1D61" Association="Self.FK__Envio__id_orden___440B1D61">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Envio__id_paq_fk__4222D4EF" Association="Self.FK__Envio__id_paq_fk__4222D4EF">
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+            <End Role="Envio" EntitySet="Envio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden__id_tarjet__2D27B809" Association="Self.FK__Orden__id_tarjet__2D27B809">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Orden" EntitySet="Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Pro__id_or__3E52440B" Association="Self.FK__Orden_Pro__id_or__3E52440B">
+            <End Role="Orden" EntitySet="Orden" />
+            <End Role="Orden_Producto" EntitySet="Orden_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Pro__id_pr__3F466844" Association="Self.FK__Orden_Pro__id_pr__3F466844">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Orden_Producto" EntitySet="Orden_Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AutoShopModelStoreContainer" CdmEntityContainer="contextAutoShop">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="AutoShopModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="AutoShopModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apPaterno" ColumnName="apPaterno" />
+                <ScalarProperty Name="apMaterno" ColumnName="apMaterno" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comentarios">
+            <EntityTypeMapping TypeName="AutoShopModel.Comentarios">
+              <MappingFragment StoreEntitySet="Comentarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente_fk" ColumnName="id_cliente_fk" />
+                <ScalarProperty Name="id_producto_fk" ColumnName="id_producto_fk" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="AutoShopModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente_fk" ColumnName="id_cliente_fk" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numExterior" ColumnName="numExterior" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="AutoShopModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="rol_fk" ColumnName="rol_fk" />
+                <ScalarProperty Name="imagen_fk" ColumnName="imagen_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Envio">
+            <EntityTypeMapping TypeName="AutoShopModel.Envio">
+              <MappingFragment StoreEntitySet="Envio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_orden_fk" ColumnName="id_orden_fk" />
+                <ScalarProperty Name="id_paq_fk" ColumnName="id_paq_fk" />
+                <ScalarProperty Name="id_cliente_fk" ColumnName="id_cliente_fk" />
+                <ScalarProperty Name="id_direccion_fk" ColumnName="id_direccion_fk" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="numero_guia" ColumnName="numero_guia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagenesEmpleado">
+            <EntityTypeMapping TypeName="AutoShopModel.ImagenesEmpleado">
+              <MappingFragment StoreEntitySet="ImagenesEmpleado">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden">
+            <EntityTypeMapping TypeName="AutoShopModel.Orden">
+              <MappingFragment StoreEntitySet="Orden">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente_fk" ColumnName="id_cliente_fk" />
+                <ScalarProperty Name="id_direccion_fk" ColumnName="id_direccion_fk" />
+                <ScalarProperty Name="id_tarjeta_fk" ColumnName="id_tarjeta_fk" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="numero_confirmacion" ColumnName="numero_confirmacion" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Producto">
+            <EntityTypeMapping TypeName="AutoShopModel.Orden_Producto">
+              <MappingFragment StoreEntitySet="Orden_Producto">
+                <ScalarProperty Name="id_orden_fk" ColumnName="id_orden_fk" />
+                <ScalarProperty Name="id_prod_fk" ColumnName="id_prod_fk" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paqueteria">
+            <EntityTypeMapping TypeName="AutoShopModel.Paqueteria">
+              <MappingFragment StoreEntitySet="Paqueteria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="transporte" ColumnName="transporte" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="AutoShopModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AutoShopModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="AutoShopModel.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente_fk" ColumnName="id_cliente_fk" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="numero_cuenta" ColumnName="numero_cuenta" />
+                <ScalarProperty Name="mes_vencimiento" ColumnName="mes_vencimiento" />
+                <ScalarProperty Name="anio_vencimiento" ColumnName="anio_vencimiento" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="tipoTarj" ColumnName="tipoTarj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
