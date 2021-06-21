@@ -172,8 +172,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EnvioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TarjetaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -356,6 +359,27 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\MisDatos.cshtml" />
+    <Content Include="Views\Envio\Create.cshtml" />
+    <Content Include="Views\Envio\Delete.cshtml" />
+    <Content Include="Views\Envio\Details.cshtml" />
+    <Content Include="Views\Envio\Edit.cshtml" />
+    <Content Include="Views\Envio\Index.cshtml" />
+    <Content Include="Views\Envio\Edit1.cshtml" />
+    <Content Include="Views\Envio\Home.cshtml" />
+    <Content Include="Views\Envio\Index1.cshtml" />
+    <Content Include="Views\Tarjeta\Create.cshtml" />
+    <Content Include="Views\Tarjeta\Delete.cshtml" />
+    <Content Include="Views\Tarjeta\Details.cshtml" />
+    <Content Include="Views\Tarjeta\Edit.cshtml" />
+    <Content Include="Views\Tarjeta\Index.cshtml" />
+    <Content Include="Views\Tarjeta\Invalida.cshtml" />
+    <Content Include="Views\Tarjeta\MisTarjetas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
