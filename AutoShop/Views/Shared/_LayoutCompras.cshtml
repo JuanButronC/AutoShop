@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AutoShop</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/font-awesome.min.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body style="padding-top: 0;background-color:rgb(255, 239, 239)">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #e33b5c;">
+            <a href="@Url.Action("Index", "Compras")">
+                <img src="~/Content/img/recursos/logoWhite.png" style="height:40px; width:120px" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">
+                            Categorías
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @Html.ActionLink("Home", "Index", "Categoria", new { id = "home" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Registrar", "Create", "Categoria", new { id = "add" }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">
+                            Productos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            @Html.ActionLink("Home", "Index", "Producto", new { id = "home" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Registrar", "Create", "Producto", new { id = "add" }, new { @class = "dropdown-item" })
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial1")
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid pl-5 pr-5 body-content">
+        <br />
+        @RenderBody()
+        <br />
+    </div>
+    <footer class="text-white text-center" style="background-color: #e33b5c; padding: 15px;">
+        <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 24px;"><i class="fa fa-registered"></i> AutoShop - 2021</h3>
+    </footer>
+
+</body>
+</html>
