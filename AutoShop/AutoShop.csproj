@@ -291,9 +291,9 @@
     <Content Include="Content\img\recursos\paypal.png" />
     <Content Include="Content\img\recursos\TarjetaIcon.png" />
     <Content Include="Content\img\recursos\visa.png" />
-    <Content Include="Content\img\RolAlmacen\wallhaven-5wgw57.jpg" />
-    <Content Include="Content\img\RolAlmacen\wallhaven-761m23.jpg" />
-    <Content Include="Content\img\RolAlmacen\wallhaven-nm927k.jpg" />
+    <Content Include="Content\img\recursos\RolAlmacen\wallhaven-5wgw57.jpg" />
+    <Content Include="Content\img\recursos\RolAlmacen\wallhaven-761m23.jpg" />
+    <Content Include="Content\img\recursos\RolAlmacen\wallhaven-nm927k.jpg" />
     <Content Include="Scripts\Librerias\bootbox.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />

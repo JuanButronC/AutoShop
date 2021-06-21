@@ -9,7 +9,7 @@
     {
         @Html.AntiForgeryToken()
         string name = Session["name"].ToString();
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="navbar-nav navbar-right">
             <li>
                 <a class="btn" href="@Url.Action("Index","Carro")">
                     <i class="fa fa-shopping-cart" style="font-size:20px; color:lightgoldenrodyellow">
@@ -18,19 +18,16 @@
                 </a>
                 @*Html.ActionLink("Hola " + name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
             </li>
-            <li>
-                <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">
+                    <span class="fa fa-user" ></span>
                     Hola @name
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        @Html.ActionLink("Mis pedidos", "Index", "Pedido", null, new { id = "add", @class = "nav-link" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Mis datos", "MisDatos", "Cliente", null, new { id = "add", @class = "nav-link" })
-                    </li>
-                </ul>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Mis pedidos", "Index", "Pedido", null, new { id = "add", @class = "dropdown-item" })
+                        @Html.ActionLink("Mis datos", "MisDatos", "Cliente", null, new { id = "add", @class = "dropdown-item" })
+                </div>
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Cerrar sesión</a></li>
         </ul>

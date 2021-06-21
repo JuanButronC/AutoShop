@@ -184,5 +184,22 @@ namespace AutoShop.Controllers
             Session["idClient"] = idC;
             return View();
         }
+        //metodo para obtener imagen
+        public ActionResult getImg(int id)
+        {
+            Producto imgPaq = (from i in db.Producto
+                               where i.id == id
+                                 select i).ToList().FirstOrDefault();
+
+            var fileToRetrieve = imgPaq.imagen;
+            if (fileToRetrieve == null)
+            {
+                return null;
+            }
+            else
+            {
+                return File(fileToRetrieve, "image/jpeg");
+            }
+        }
     }
 }
