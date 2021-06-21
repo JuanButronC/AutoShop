@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AlmacenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaqueteriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -358,6 +359,11 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutAlmacenEnvios.cshtml" />
+    <Content Include="Views\Paqueteria\Create.cshtml" />
+    <Content Include="Views\Paqueteria\Delete.cshtml" />
+    <Content Include="Views\Paqueteria\Details.cshtml" />
+    <Content Include="Views\Paqueteria\Edit.cshtml" />
+    <Content Include="Views\Paqueteria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
