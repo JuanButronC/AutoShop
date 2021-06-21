@@ -176,6 +176,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\productoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +204,7 @@
     <Compile Include="Models\ImagenesEmpleado.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modelo.Context.cs">
       <AutoGen>True</AutoGen>
@@ -369,6 +371,11 @@
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\getExistenciasCat.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\producto\Create.cshtml" />
+    <Content Include="Views\producto\Delete.cshtml" />
+    <Content Include="Views\producto\Details.cshtml" />
+    <Content Include="Views\producto\Edit.cshtml" />
+    <Content Include="Views\producto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
