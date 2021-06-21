@@ -36,7 +36,7 @@ namespace AutoShop.Models
         public byte[] imagen { get; set; }
         [Required(ErrorMessage = "Favor de ingresar un precio.")]
         [Display(Name = "Precio")]
-        [Range(1, 500, ErrorMessage = "Favor de ingresar un precio valido ($1.00 - $500.00)")]
+        [Range(1, 2000, ErrorMessage = "Favor de ingresar un precio valido ($1.00 - $2000.00)")]
         public decimal precio { get; set; }
         [Display(Name = "Descuento")]
         public Nullable<decimal> descuento { get; set; }
