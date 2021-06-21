@@ -5,63 +5,113 @@
     Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
 }
 
-<h2>Edit</h2>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Paqueteria</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.transporte, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.transporte, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.transporte, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div align="left"><h1>Actualización de Paqueterías</h1></div><hr><br>
     </div>
-}
+    <div class="col-md-12">
+        <div class="card border-danger">
+            <div class="card-body" style="padding-left: 200px; padding-right: 200px; padding-top: 50px;padding-bottom: 50px;">
+                <div class="card border-danger  form-horizontal">
+                    <div class="card-header bg-danger text-white border-danger"><h3>Actualizar paquetería</h3></div>
+                    <div class="card-body">
+                        <br><br>
+                        @using (Html.BeginForm("Edit", "Paqueteria", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-7 pt-5" align="center">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Nombre</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Tipo de paquetería</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Tipo de transporte</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.EditorFor(model => model.transporte, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.transporte, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3" align="left">
+                                            <p style="padding: 10px">Imagen</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.imagen, new { @type = "file", @class = "form-control", @id = "inputImageEditP", accept = ".jpg,.jpeg,.png" })
+                                                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body" style="border: 1px #e33b5c solid; border-radius: 10px">
+                                            <div align="center">
+                                                <p>Previsualización de Imagen</p>
+                                                <div align="center">
+                                                    <img src="@Url.Action("getImg",new { id = Model.id })" alt="Sin imagen" style="width:200px; height:200px;" id="ImageEditP" />
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" align="left">
+                                    <br><br><br>
+                                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Index", "Paqueteria")">Regresar</a>
+                                </div>
+                                <div class="col-md-6" align="right">
+                                    <br><br><br>
+                                    <input class="btn btn-dark" style="width: 20%" type="submit" value="Guardar">
+                                </div>
+                            </div><br>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script src="~/Scripts/Generados/ImgPreview_EditP.js"></script>

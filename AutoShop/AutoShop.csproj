@@ -364,6 +364,7 @@
     <Content Include="Views\Paqueteria\Details.cshtml" />
     <Content Include="Views\Paqueteria\Edit.cshtml" />
     <Content Include="Views\Paqueteria\Index.cshtml" />
+    <Content Include="Views\Paqueteria\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

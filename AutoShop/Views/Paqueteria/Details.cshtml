@@ -36,13 +36,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.imagen)
+            Imagen
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.imagen)
+            <img src="@Url.Action("getImg",new { id = Model.id })" alt="@Model.nombre" style="height:60px; width:120px" />
         </dd>
-
     </dl>
 </div>
 <p>

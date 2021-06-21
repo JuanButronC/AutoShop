@@ -4,54 +4,96 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
 }
+<br />
+<h1>Eliminación de Paquetería</h1>
+<hr />
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Paqueteria</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tipo)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tipo)
-        </dd>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card border-danger">
+            <div class="card-body" style="padding-left: 200px; padding-right: 200px; padding-top: 50px;padding-bottom: 50px;">
+                <div class="card border-danger  form-horizontal">
+                    <div class="card-header bg-danger text-white border-danger"><h3>¿Estás seguro de eliminar la paquetería?</h3></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7 pt-5 mt-5" align="center">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3" align="left">
+                                        <p style="padding: 10px">Nombre</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input disabled value="@Html.DisplayFor(model => model.nombre)" class="input-group form-control" />
+                                    </div>
+                                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.transporte)
-        </dt>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3" align="left">
+                                        <p style="padding: 10px">Tipo de paquetería</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input disabled value="@Html.DisplayFor(model => model.tipo)" class="input-group form-control" />
+                                    </div>
+                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.transporte)
-        </dd>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3" align="left">
+                                        <p style="padding: 10px">Tipo de transporte</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input disabled value="@Html.DisplayFor(model => model.transporte)" class="input-group form-control" />
+                                    </div>
+                                </div>
+                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.imagen)
-        </dt>
+                            <div class="col-md-3 pt-5">
+                                <div class="card">
+                                    <div class="card-body" style="border: 1px #e33b5c solid; border-radius: 10px">
+                                        <div align="center">
+                                            <p>Previsualización de Imagen</p>
+                                            <div align="center">
+                                                <img src="@Url.Action("getImg",new { id = Model.id })" alt="Sin imagen" style="height:200px; width:200px" />
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-6" align="left">
+                                    <br><br><br>
+                                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Index", "Paqueteria")">Regresar</a>
+                                </div>
+                                <div class="col-md-6" align="right">
+                                    <br><br><br>
+                                    <input class="btn btn-dark" style="width: 20%" type="submit" value="Eliminar">
+                                </div>
+                            </div><br>
 
-        <dd>
-            @Html.DisplayFor(model => model.imagen)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
+        <br><br>
+    </div>
 </div>

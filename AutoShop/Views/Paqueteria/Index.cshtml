@@ -5,48 +5,83 @@
     Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
 }
 
-<h2>Index</h2>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+<br />
+<h1>Actualizar Paqueterías</h1>
+<hr />
+<div class="col-md-12" style="min-height:700px">
+    <br>
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <br>
+            <div align="left"><h3>Todas las paqueterías</h3></div>
+        </div>
+        <div class="card-body">
+            @{
+                if (Model.Count() == 0)
+                {
+                    <div class="jumbotron text-center" style="font-size:30px">No hay paqueterías, ¡Qué esperas, crea una ahora!</div>
+                }
+                else
+                {
+                    <table class="table table-dark table-striped table-hover table-bordered">
+                        <thead>
+                            <tr class="bg-danger text-white">
+                                <th>ID</th>
+                                <th>Nombre de paquetería</th>
+                                <th>Tipo de paquetería</th>
+                                <th>Tipo de transporte</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tipo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.transporte)
+                                    </td>
+                                    <td style="text-align:center">
+                                        <img src="@Url.Action("getImg",new { id = item.id })" alt="Sin imagen" style="height:80px; width:120px" />
+                                    </td>
+                                    <td style="text-align:center; vertical-align:middle">
+                                        <a class="btn btn-info" href="@Url.Action("Edit", "Paqueteria", new { id = item.id })" style="margin:10px">Actualizar</a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.transporte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th></th>
-    </tr>
+                                        <a class="btn btn-danger" href="@Url.Action("Delete", "Paqueteria", new { id = item.id })" style="margin:10px">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.transporte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>
+            <div class="row">
+                <div class="col-md-6" align="left">
+                    <br><br><br>
+                    <a class="btn btn-dark" style="width: 20%" type="submit" href="@Url.Action("Home", "Paqueteria")">Regresar</a>
+                </div>
+            </div><br>
+        </div>
+    </div>
+</div>

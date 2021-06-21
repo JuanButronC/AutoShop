@@ -1,0 +1,168 @@
+﻿@using AutoShop.Models
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutAlmacenEnvios.cshtml";
+
+    DateTime dia = DateTime.Now;
+    var hora = dia.Hour;
+    string mensaje = "";
+    if (hora < 12)
+    {
+        mensaje = "Buenos días";
+    }
+    if (hora >= 12)
+    {
+        mensaje = "Buenas tardes";
+    }
+    if (hora >= 19)
+    {
+        mensaje = "Buenas noches";
+    }
+    string name = @Session["usr"].ToString();
+}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+      rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+<br /><br />
+
+<div class="row" align="center">
+    <div class="col-md-12">
+        <div align="left"><h1>Home Paqueterías</h1></div><hr>
+        <div style="text-align: justify;">
+            <strong>@mensaje, @name, bienvenido.</strong><br />En este módulo, usted como empleado de Almacen, podrá manejar la información referente a paqueterías desde consultar,
+            registrar, actualizar hasta eliminar aquellas paqueterías que desee.
+        </div><br><br><br />
+    </div>
+    <div class="col-md-4">
+
+        <a href="@Url.Action("Create", "Paqueteria", new { id = "add" })"
+           class="btn btn-primary" style="height:120px; width:100%; font-size:28px; padding:40px; text-align:center;">
+            Crear nueva paquetería
+        </a>
+        <br />
+        <br />
+        <a href="@Url.Action("Index", "Paqueteria", new { id = "add" })"
+           class="btn btn-warning" style="height:120px; width:100%; font-size:28px; padding:40px; text-align:center;">
+            Actualizar paquetería
+        </a>
+
+    </div>
+    <div class="col-md-8" style="padding-left:180px;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem; padding-left: 0; margin-right: 20px; padding-right: 0;">
+                    <img src="https://www.mascontainer.com/wp-content/uploads/2020/10/El-mercado-global-de-paqueteri%CC%81a-pequen%CC%83a-y-express-crecera%CC%81-un-72-en-2020.png" class="card-img-top" alt="..." height="320px">
+                    <div class="card-body" style="padding-bottom: 0px">
+                        <p class="card-text" style="text-align: center;">
+                            <strong>Paqueterías aliadas</strong><br>
+                            <label style="text-align: center; font-size: 30px">@ViewBag.conteoTotalPaqs</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="padding-left:80px;">
+                <div class="row">
+
+                    <div class="card" style="width: 16rem; padding-left: 0; margin-right: 20px; padding-right: 0; margin-bottom: 10px">
+                        <img src="https://mag21.mx/wp-content/uploads/2021/01/Depositphotos_316116948_s-2019.jpg" class="card-img-top" alt="..." height="80px">
+                        <div class="card-body" style="padding-bottom: 0px">
+                            <p class="card-text" style="text-align: center;">
+                                <strong>Paqueterías nacionales</strong><br>
+                                <label style="text-align: center; font-size: 30px">@ViewBag.conteoNacional</label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 16rem; padding-left: 0; margin-right: 20px; padding-right: 0; margin-bottom: 10px">
+                        <img src="https://www.amcargo.es/wp-content/uploads/2018/02/flota-camiones-amcargo.jpg" class="card-img-top" alt="..." height="80px">
+                        <div class="card-body" style="padding-bottom: 0px">
+                            <p class="card-text" style="text-align: center;">
+                                <strong>Paqueterías con transporte terrestre</strong><br>
+                                <label style="text-align: center; font-size: 30px">@ViewBag.conteoTerrestres</label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 16rem; padding-left: 0; margin-right: 20px; padding-right: 0; margin-bottom: 10px">
+                        <img src="https://image.freepik.com/vector-gratis/mapa-mundo-tecnologia-global-o-red-conexion-social-nodos-enlaces-ilustracion-vectorial_1284-1968.jpg" class="card-img-top" alt="..." height="80px">
+                        <div class="card-body" style="padding-bottom: 0px">
+                            <p class="card-text" style="text-align: center;">
+                                <strong>Paqueterías internacionales</strong><br>
+                                <label style="text-align: center; font-size: 30px">@ViewBag.conteoInternacional</label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 16rem; padding-left: 0; margin-right: 20px; padding-right: 0; margin-bottom: 10px">
+                        <img src="https://www.sertrans.es/wp-content/uploads/2018/11/Transporte-ae%CC%81reo-o%CC%81ptimo.jpg" class="card-img-top" alt="..." height="80px">
+                        <div class="card-body" style="padding-bottom: 0px">
+                            <p class="card-text" style="text-align: center;">
+                                <strong>Paqueterías con transporte aéreo</strong><br>
+                                <label style="text-align: center; font-size: 30px">@ViewBag.conteoAereos</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><br>
+    </div>
+</div>
+<hr />
+<div class="col-md-12" style="min-height:500px">
+    <br>
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <br>
+            <div align="left"><h3>Todas las paqueterías</h3></div>
+        </div>
+        <div class="card-body">
+            @{
+                List<Paqueteria> listadoPaqueterias = (List<Paqueteria>)ViewBag.listadoPaqueterias;
+                if (listadoPaqueterias.Count() == 0)
+                {
+                    <div class="jumbotron text-center" style="font-size:30px">No hay paqueterías, ¡Qué esperas, crea una ahora!</div>
+                }
+                else
+                {
+                    <table class="table table-dark table-striped table-hover table-bordered">
+                        <thead>
+                            <tr class="bg-danger text-white">
+                                <th>ID</th>
+                                <th>Nombre de paquetería</th>
+                                <th>Tipo de paquetería</th>
+                                <th>Tipo de transporte</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listadoPaqueterias)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tipo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.transporte)
+                                    </td>
+                                    <td style="text-align:center">
+                                        <img src="@Url.Action("getImg",new { id = item.id })" alt="Sin imagen" style="height:80px; width:120px" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+</div>
