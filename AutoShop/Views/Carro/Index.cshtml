@@ -1,0 +1,78 @@
+﻿@using AutoShop.Models
+@{
+    ViewBag.Title = "Carrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card" style="background-color: #e33b5c;">
+    <div class="card-header text-white text-center">
+        <h2>Carro de Compra</h2>
+    </div>
+</div>
+
+@{
+    if (Session["cart"] != null && Convert.ToInt32(Session["itemTotal"]) != 0)
+    {
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr style="background-color: #e33b5c; color: white;">
+                    <th>Opción</th>
+                    <th>Nombre</th>
+                    <th>Foto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Añadir Uno</th>
+                    <th>Quitar Uno</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Item item in (List<Item>)Session["cart"])
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Quitar", "Carro", new { id = item.Producto.id, @style="background-color: #e33b5c; color: white;" })"> Quitar</a>
+                        </td>
+                        <td>@item.Producto.nombre</td>
+                        <td><img class="img-responsive" src="~/Content/img/productos/@item.Producto.imagen" /></td>
+                        <td>@item.Producto.precio</td>
+                        <td>@item.Cantidad</td>
+                        <td>@(item.Producto.precio * item.Cantidad)</td>
+                        <td>@Html.ActionLink("+", "SumarUno", new { id = item.Producto.id }, new { @class = "btn", @style = "background-color: #e33b5c; color: white;" })</td>
+                        <td>@Html.ActionLink("-", "QuitarUno", new { id = item.Producto.id }, new { @class = "btn", @style = "background-color: #e33b5c; color: white;" })</td>
+                    </tr>
+                }
+                <tr>
+                    <td align="right" colspan="6">Total</td>
+                    <td>
+                        @{
+                            List<Item> cart = (List<Item>)Session["cart"];
+                            var total = cart.Sum(item => item.Producto.precio * item.Cantidad);
+                        }
+                        @total
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="jumbotron" style="font-size:20px; text-align:center; margin-top:40px">
+            Aún no cuenta con productos, busca en nuestro catálogo y añádelo a tu carrito.
+        </div>
+    }
+}
+
+<br />
+<a class="btn btn-warning" href="@Url.Action("Index","Home")"> Continuar Comprando</a>
+<p style="float: right; color: white;">
+    @{
+        if (Session["cart"] != null && Convert.ToInt32(Session["itemTotal"]) != 0)
+        {
+            @Html.ActionLink("Confirmar Orden", "CrearOrden", "Pago", new { area = "" }, new { @class = "btn", @style = "background-color: #e33b5c; color: white;" })
+        }
+    }
+</p>
+
