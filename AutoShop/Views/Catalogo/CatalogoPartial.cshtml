@@ -28,14 +28,14 @@
                         {
                             <span class="badge badge-pill ">-@prodItem.descuento%</span>
                             <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
-                                <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = prodItem.id})" style="cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
+                                <img class="card-img-top" src="@Url.Action("ImagenProducto",new { id = prodItem.id})" style="cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
                             </a>
 
                         }
                         else
                         {
                             <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
-                                <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = prodItem.id})" style="margin-top:20px; cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
+                                <img class="card-img-top" src="@Url.Action("ImagenProducto",new { id = prodItem.id})" style="margin-top:20px; cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
                             </a>
                         }
                         <div class="card-body">
