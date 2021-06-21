@@ -1,0 +1,59 @@
+﻿@model AutoShop.Models.Empleado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenesEmpleado.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenesEmpleado.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
