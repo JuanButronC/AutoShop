@@ -1,0 +1,41 @@
+﻿@model AutoShop.Models.Cliente
+
+@{
+    ViewBag.Title = "MisDatos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hola @Html.DisplayFor(model => model.nombre)</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mis datos
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Mis datos personales", "Details", new { id = Model.id })
+        </dd>
+
+        <dt>
+            Mis Direcciónes
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Mis direcciones", "MisDirecciones", "Direccion")
+        </dd>
+
+        <dt>
+            Mis Tarjetas
+        </dt>
+
+        <dd>
+            @Html.ActionLink("Mis tarjetas", "MisTarjetas", "Tarjeta")
+        </dd>
+
+
+    </dl>
+</div>
+
