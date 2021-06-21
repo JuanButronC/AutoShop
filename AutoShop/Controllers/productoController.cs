@@ -157,8 +157,15 @@ namespace AutoShop.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,id_categoria,descuento,descripcion,precio,cantidad")] Producto producto)
+        public ActionResult Edit([Bind(Include = "id,nombre,id_categoria,descuento,descripcion,precio,cantidad")] Producto producto, HttpPostedFileBase imagen)
         {
+            if (imagen != null && imagen.ContentLength > 0)
+            {
+                using (var reader = new System.IO.BinaryReader(imagen.InputStream))
+                {
+                    producto.imagen = reader.ReadBytes(imagen.ContentLength);
+                }
+            }
             if (ModelState.IsValid)
             {
                 int id = producto.id;
@@ -170,6 +177,7 @@ namespace AutoShop.Controllers
                 prod.descripcion = producto.descripcion;
                 prod.descuento = producto.descuento;
                 prod.precio = producto.precio;
+                prod.imagen = producto.imagen;
                 prod.cantidad = producto.cantidad;
                 prod.id_categoria = producto.id_categoria;
                 db.SaveChanges();

@@ -150,7 +150,7 @@ namespace AutoShop.Controllers
 
         public ActionResult getExistenciasCat()
         {
-            var producto = db.Categoria.Take(5).ToList();
+            var producto = db.Categoria.Take(3).ToList();
             return View(producto);
         }
     }
