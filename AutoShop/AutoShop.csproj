@@ -366,6 +366,7 @@
     <Content Include="Views\Catalogo\productosCategoria.cshtml" />
     <Content Include="Views\Catalogo\BuscarProducto.cshtml" />
     <Content Include="Views\Catalogo\Producto.cshtml" />
+    <Content Include="Views\Catalogo\CatalogoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

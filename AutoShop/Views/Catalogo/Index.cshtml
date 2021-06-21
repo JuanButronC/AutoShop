@@ -1,8 +1,109 @@
 ﻿
+@using AutoShop.Models
+@using System;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<nav class="navbar navbar-expand-lg bg-info" style="margin-top:20px;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-white"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" id="a-todos" href="#">Todos los productos</a>
+            </li>
+            @foreach (Categoria catItem in (List<Categoria>)ViewBag.categorias)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-white a-categoria" id-categoria="@catItem.id" href="#">@catItem.nombre</a>
+                </li>
+            }
+        </ul>
+
+    </div>
+
+</nav>
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-12" id="div-search">
+
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-4 col-sm-12">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <div class="card card-secondary">
+                    <div class="card-body">
+                        <form action="" method="get">
+                            <div class="form-group">
+                                <label for="input-min">Precio Minimo</label>
+                                <input type="number" min="0" max="999999" name="input-min" id="input-min" class="form-control filtro-precio" placeholder="00.00" aria-describedby="helppmin">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="input-max">Precio Maximo</label>
+                                <input type="number" min="0" max="999999" name="input-max" id="input-max" class="form-control filtro-precio" placeholder="00.00" aria-describedby="helppmax">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <div class="card card-secondary">
+                    <div class="card-body" id="div-descuentos">
+                        Descuentos
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12">
+                                <button class="btn btn-c text-white" id="btn-todos-descuento">
+                                    Todas las ofertas
+                                </button>
+                            </div>
+                        </div>
+                        @foreach (decimal? descuento in (List<decimal?>)ViewBag.descuentos)
+                        {
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-c text-white btn-descuento" descuento="@descuento">
+                                        -@descuento%
+                                    </button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-12">
+                <button class="btn btn-c text-white btn-block" id="btn-limpiar-filtros">
+                    Limpiar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-md-8 col-sm-12" id="main-catalog">
+        @Html.Partial("CatalogoPartial")
+
+    </div>
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/Scripts/Generados/Catalogo/accionesCatalogo.js"></script>
 

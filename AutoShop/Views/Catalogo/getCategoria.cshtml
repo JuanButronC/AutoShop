@@ -1,8 +1,19 @@
-﻿
-@{
-    ViewBag.Title = "getCategoria";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@using AutoShop.Models
+@{Layout = null; }
+@{ Categoria cat = (Categoria)ViewBag.categoria;}
+<div class="card text-left card-secondary" id="search-panel">
+    <div class="card-body">
+        <img class="img-thumbnail" src="@Url.Action("ImagenCategoria",new { id = cat.id})" alt="@Model.nombre" height="100px" width="100px" style="display:inline-block" />
 
-<h2>getCategoria</h2>
+        <img src="~/Content/img/recursos/American.png">
+        <div style="display:inline-block">
+            <h4 class="card-title" id="search-panel-title">@cat.nombre</h4>
+            <p class="text-justify">@cat.descripcion</p>
+        </div>
+
+
+
+    </div>
+</div>
+
 

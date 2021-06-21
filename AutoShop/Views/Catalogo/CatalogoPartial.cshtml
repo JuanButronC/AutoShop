@@ -1,0 +1,106 @@
+﻿
+@using AutoShop.Models
+@{Layout = null; }
+<div class="container">
+    @{ List<Producto> productos = (List<Producto>)ViewBag.productos;
+        int pages = (int)ViewBag.pageCount;
+        int selected = (int)ViewBag.selectedPage;
+        int tope = 9;
+        int pag = 1;}
+
+    <div class="row">
+        @if (productos.Count != 0)
+        {
+
+            for (int i = 0; i < productos.Count; i++)
+            {
+                Producto prodItem = productos[i];
+                if (i == tope)
+                {
+                    pag++;
+                    tope += tope;
+                }
+                <div class="col-sm-4 div-prod" pagina="@pag" style="margin-top:20px" precio="@prodItem.precio" descuento="@prodItem.descuento">
+
+
+                    <div class="card text-center bg-info text-white card-prod" producto-id="@prodItem.id">
+                        @if (prodItem.descuento != 0)
+                        {
+                            <span class="badge badge-pill ">-@prodItem.descuento%</span>
+                            <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
+                                <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = prodItem.id})" style="cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
+                                <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = prodItem.id})" style="margin-top:20px; cursor:pointer" height="150px" width="150px" alt="@prodItem.nombre">
+                            </a>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.ActionLink(@prodItem.nombre, "Producto", "Catalogo", new { id = prodItem.id }, new { @class = "prod-name" })</h5>
+                            <p class="card-text">$@prodItem.precio</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="col-sm-12">
+                <div class="card text-center bg-secondary" style="margin-bottom: 10px">
+                    <div class="card-body">
+                        <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i></h5>
+                        <p>Sin productos</p>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+
+    @if (productos.Count > 0)
+    {
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-sm-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" style="width: 100%;">
+                        <li class="page-item" class="bg-info">
+                            <a class="page-link btn-c text-white" pag="prev" href="#" aria-label="Previous">
+                                &laquo;
+                            </a>
+                        </li>
+
+                        @for (int i = 1; i <= pages; i++)
+                        {
+                            if (i == selected)
+                            {
+                                <li class="page-item"><a class="page-link text-white btn-c" pag="@i" href="#" id="page-link-@i">@i</a></li>
+
+                            }
+                            else
+                            {
+                                <li class="page-item"><a class="page-link text-white btn-c" pag="@i" href="#" id="page-link-@i">@i</a></li>
+                            }
+                        }
+                        <li class="page-item" class="bg-info">
+                            <a class="page-link btn-c text-white" href="#" pag="next" aria-label="Next">
+                                &raquo;
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+</div>
+
+
+
