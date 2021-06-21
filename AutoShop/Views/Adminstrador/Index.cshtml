@@ -1,8 +1,137 @@
-﻿
+﻿@using AutoShop.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+@{
+    DateTime dia = DateTime.Now;
+    var hora = dia.Hour;
+    string mensaje = "";
+    if (hora < 12)
+    {
+        mensaje = "Buenos días ";
+    }
+    if (hora >= 12)
+    {
+        mensaje = "Buenas tardes ";
+    }
+    if (hora >= 19)
+    {
+        mensaje = "Buenas noches ";
+    }
+    string name = @Session["usr"].ToString();
+}
+<div class="carousel slide" data-ride="carousel" style="margin-top:20px">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" height="250px" src="~/Content/img/recursos/businessman-1492563_1920.jpg" alt="admin1">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" height="250px" src="~/Content/img/recursos/paper-3213924_1920.jpg" alt="admin2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" height="250px" src="~/Content/img/recursos/paper-3309829_1920.jpg" alt="admin">
+        </div>
+    </div>
+</div>
+<br>
+<h2>@mensaje  @name</h2>
+<br>
+<div class="row" style="margin-bottom:20px">
+    <div class="col-md-12">
+        <div class="card text-left bg-info ">
+            <div class="card-body">
+                <h5>Total de Empleados: <strong>@ViewBag.total</strong></h5>
 
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card text-left bg-info">
+            <div class="card-body">
+                <h5>Total de Administradores de Compras: <strong>@ViewBag.totalCompras</strong></h5>
+
+
+
+                <br>
+                <div class="card-body scroll-y">
+                    @{ List<Empleado> listaC = (List<Empleado>)ViewBag.listaCompras;}
+                    @if (listaC.Count == 0)
+                    {
+                        <div class="card text-center bg-secondary" style="margin-bottom: 10px">
+                            <div class="card-body">
+                                <h5> <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i></h5>
+                                <p>Sin administradores de Productos</p>
+
+
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (Empleado emp in listaC)
+                        {
+                            <div class="card text-left bg-secondary" style="margin-bottom: 10px">
+                                <div class="card-body">
+                                    <div>
+                                        <img src="@Url.Action("Imagen","Empleado",new { id = emp.imagen_fk})" alt="@emp.nombre" height="50px" width="50px" class="img-thumbnail" />
+                                        <strong class="d-inline-block"><a href="@Url.Action("Details", "Empleado", new { id = emp.id })" style="color:#e33b5c;">@emp.nombre</a> </strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-left bg-info">
+            <div class="card-body">
+                <h5>Total de Administradores de Envios: <strong>@ViewBag.totalAlmacen</strong></h5>
+
+
+
+                <br>
+                <div class="card-body scroll-y">
+                    @{ List<Empleado> listaA = (List<Empleado>)ViewBag.listaAlmacen;}
+                    @if (listaA.Count == 0)
+                    {
+                        <div class="card text-center bg-secondary" style="margin-bottom: 10px">
+                            <div class="card-body">
+                                <h5> <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i></h5>
+                                <p>Sin administradores de Almacen</p>
+
+
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (Empleado emp in listaA)
+                        {
+                            <div class="card text-left bg-secondary" style="margin-bottom: 10px">
+                                <div class="card-body">
+                                    <img src="@Url.Action("Imagen","Empleado",new { id = emp.imagen_fk})" alt="@emp.nombre" height="50px" width="50px" class="img-thumbnail" />
+                                    <strong class="d-inline-block"><a href="@Url.Action("Details", "Empleado", new { id = emp.id })" style="color:#e33b5c;">@emp.nombre</a> </strong>
+                                </div>
+                            </div>
+
+                        }
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
