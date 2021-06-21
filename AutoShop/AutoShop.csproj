@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AlmacenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PaqueteriaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -369,6 +370,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Almacen\" />
+    <Folder Include="Views\Pago\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
