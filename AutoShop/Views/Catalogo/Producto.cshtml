@@ -1,7 +1,7 @@
 ﻿@using AutoShop.Models
 @{
     ViewBag.Title = "Producto";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{Producto item = (Producto)ViewBag.producto;}
@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-md-6 justify-content-center">
-                        <img class="card-img-top" src="@Url.Action("ImagenProdcuto",new { id = item.id})"  height="400px" width="400px" alt="">
+                        <img class="card-img-top" src="@Url.Action("ImagenProducto",new { id = item.id})"  height="400px" width="400px" alt="">
                     </div>
                     <div class="col-md-6 text-white">
                         @if (item.descuento == 0)
@@ -136,14 +136,14 @@
                     {
                         <span class="badge badge-pill ">-@prodItem.descuento%</span>
                         <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
-                            <img class="card-img-top" src="src=" @Url.Action("ImagenProducto", new { id = prodItem }) " " style="cursor:pointer" height="150px" width="150px" alt="">
+                            <img class="card-img-top" src="@Url.Action("ImagenProducto", new { id = prodItem.id })"  style="cursor:pointer" height="150px" width="150px" alt="">
                         </a>
 
                     }
                     else
                     {
                         <a href="@Url.Action("Producto", "Catalogo", new { id = prodItem.id })">
-                            <img class="card-img-top" src="src=" @Url.Action("ImagenProducto", new { id = prodItem }) " " style="margin-top:20px;cursor:pointer" height="150px" width="150px" alt="">
+                            <img class="card-img-top" src="@Url.Action("ImagenProducto", new { id = prodItem.id })" style="margin-top:20px;cursor:pointer" height="150px" width="150px" alt="">
                         </a>
                     }
                     <div class="card-body">

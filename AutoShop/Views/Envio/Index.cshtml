@@ -47,15 +47,15 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Orden.id_cliente_fk)
+                                        @Html.DisplayFor(modelItem => item.Orden.id_cliente_fk)
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Cliente.nombre)
-                                        @Html.DisplayNameFor(model => model.Cliente.apPaterno)
-                                        @Html.DisplayNameFor(model => model.Cliente.apMaterno)
+                                        @Html.DisplayFor(modelItem => item.Cliente.nombre)
+                                        @Html.DisplayFor(modelItem => item.Cliente.apPaterno)
+                                        @Html.DisplayFor(modelItem => item.Cliente.apMaterno)
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Orden.fecha_creacion)
+                                        @Html.DisplayFor(modelItem => item.Orden.fecha_creacion)
                                     </td>
 
                                     <td style="text-align:center; vertical-align:middle">

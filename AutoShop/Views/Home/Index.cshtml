@@ -45,17 +45,16 @@
         {
             <div class="col-md-3">
                 <div class="card card-default" align="center">
-                    <a href="@Url.Action("Details","producto",new { id = productoItem.id})" style="text-decoration: none;">
+                    <a href="@Url.Action("Producto","Catalogo",new { id = productoItem.id})" style="text-decoration: none;">
 
                         <div class="card-body" style="padding:5px; color:black;">
-                            <img height="150px" width="150px" src="~/Content/img/productos/@productoItem.imagen"
-                                 class="img-responsive" />
+                            <img class="img-responsive" src="@Url.Action("getImg",new { id = productoItem.id})" height="150px" width="150px" alt="">
                             <p align="center" style="padding:0px; margin:0px; height:7rem">@productoItem.nombre</p>
                             <h4>$@productoItem.precio</h4>
                         </div>
                     </a>
                     <div style="padding:5px;" width="100%">
-                        <button class="btn btn-secondary" href="@Url.Action("Agregar","Carro",new { id = productoItem.id})" style="color:white; width:100%">Agregar al carrito</button>
+                        <a class="btn btn-secondary" href="@Url.Action("Agregar","Carro",new { id = productoItem.id, cantidad=1})" style="color:white; width:100%">Agregar al carrito</a>
                     </div>
                 </div>
             </div>
@@ -74,17 +73,16 @@
         {
             <div class="col-md-3">
                 <div class="card card-default" align="center">
-                    <a href="@Url.Action("Details","producto",new { id = productoItem.id})" style="text-decoration: none;">
+                    <a href="@Url.Action("Producto","Catalogo",new { id = productoItem.id})" style="text-decoration: none;">
 
                         <div class="card-body" style="padding:5px; color:black;">
-                            <img height="150px" width="150px" src="~/Content/img/productos/@productoItem.imagen"
-                                 class="img-responsive" />
+                            <img class="img-responsive" src="@Url.Action("getImg",new { id = productoItem.id})" height="150px" width="150px" alt="">
                             <p align="center" style="padding:0px; margin:0px; height:7rem">@productoItem.nombre</p>
                             <h4>$@productoItem.precio</h4>
                         </div>
                     </a>
                     <div style="padding:5px;" width="100%">
-                        <button href="@Url.Action("Agregar","Carro",new { id = productoItem.id})" class="btn btn-secondary" style="color:white; width:100%">Agregar al carrito</button>
+                        <a href="@Url.Action("Agregar","Carro",new { id = productoItem.id, cantidad=1})" class="btn btn-secondary" style="color:white; width:100%">Agregar al carrito</a>
                     </div>
                 </div>
             </div>

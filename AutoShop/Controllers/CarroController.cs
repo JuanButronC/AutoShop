@@ -15,7 +15,7 @@ namespace AutoShop.Controllers
             return View();
         }
 
-        public ActionResult Agregar(int id)
+        public ActionResult Agregar(int id, int cantidad)
         {
             ProductoCarro carro = new ProductoCarro();
             if (Session["cart"] == null)
@@ -23,7 +23,7 @@ namespace AutoShop.Controllers
                 List<Item> cart = new List<Item>();
                 Producto p = carro.find(id);
                 string name = p.nombre;
-                cart.Add(new Item { Producto = carro.find(id), Cantidad = 1 });
+                cart.Add(new Item { Producto = carro.find(id), Cantidad = cantidad });
                 setItemCount(cart);
                 Session["cart"] = cart;
 
@@ -34,13 +34,13 @@ namespace AutoShop.Controllers
                 int index = isExist(id);
                 if (index != -1)
                 {
-                    cart[index].Cantidad++;
+                    cart[index].Cantidad += cantidad;
                 }
                 else
                 {
                     Producto P = carro.find(id);
                     string name = P.nombre;
-                    cart.Add(new Item { Producto = carro.find(id), Cantidad = 1 });
+                    cart.Add(new Item { Producto = carro.find(id), Cantidad = cantidad });
                 }
                 setItemCount(cart);
                 Session["cart"] = cart;

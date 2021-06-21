@@ -94,14 +94,14 @@
         <div class="card">
             <div class="card-header bg-danger text-white">
                 <br>
-                <div align="left"><h3>Todos los pedidos enviados</h3></div>
+                <div align="left"><h3>Todos los pedidos sin enviar</h3></div>
             </div>
             <div class="card-body">
                 @{
                     List<Envio> listadoPedidos = (List<Envio>)ViewBag.listadoPedidos;
                     if (listadoPedidos.Count() == 0)
                     {
-                        <div class="jumbotron text-center" style="font-size:30px">No hay pedidos enviados, ¡Qué esperas, revisa los pedidos ahora!</div>
+                        <div class="jumbotron text-center" style="font-size:30px">No hay pedidos sin enviar</div>
                     }
                     else
                     {
@@ -114,14 +114,12 @@
                                     <th>Paquetería</th>
                                     <th>Orden de cliente</th>
                                     <th>Dirección</th>
-                                    <th>Fecha de envío</th>
-                                    <th>Fecha de entrega</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in listadoPedidos)
                                 {
-                                    if (item.fecha_envio != null)
+                                    if (item.fecha_envio == null)
                                     {
 
                                         <tr>
@@ -145,22 +143,6 @@
                                                 @Html.DisplayFor(modelItem => item.Direccion.colonia)
                                                 @Html.DisplayFor(modelItem => item.Direccion.municipio)
                                                 @Html.DisplayFor(modelItem => item.Direccion.estado)
-                                            </td>
-                                            <td>
-                                                @{
-                                                    if (item.fecha_envio == null)
-                                                    {
-                                                        @Html.Display("No enviado")
-                                                    }
-                                                    else
-                                                    {
-
-                                                        @Html.DisplayFor(modelItem => item.fecha_envio)
-                                                    }
-                                                }
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fecha_entrega)
                                             </td>
                                         </tr>
                                     }

@@ -95,5 +95,22 @@ namespace AutoShop.Controllers
 
             return View();
         }
+
+        public ActionResult getImg(int id)
+        {
+            Producto imgProd = (from i in db.Producto
+                                 where i.id == id
+                                 select i).ToList().FirstOrDefault();
+
+            var fileToRetrieve = imgProd.imagen;
+            if (fileToRetrieve == null)
+            {
+                return null;
+            }
+            else
+            {
+                return File(fileToRetrieve, "image/jpeg");
+            }
+        }
     }
 }
